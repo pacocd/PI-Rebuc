@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="AO0-Mn-JKz">
             <objects>
-                <viewController id="hjs-r2-Ftd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="hjs-r2-Ftd" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cyx-uY-nrk"/>
                         <viewControllerLayoutGuide type="bottom" id="wAS-p3-Px2"/>
@@ -108,12 +108,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ytg-cN-68Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916" y="501"/>
+            <point key="canvasLocation" x="1580" y="-174"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qCN-9e-z5z">
             <objects>
-                <viewController id="NtA-X2-T57" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="NtA-X2-T57" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zOn-dZ-fay"/>
                         <viewControllerLayoutGuide type="bottom" id="2IB-e7-tAU"/>
