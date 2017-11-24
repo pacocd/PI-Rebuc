@@ -6,6 +6,7 @@ target 'Rebuc' do
   use_frameworks!
 
   # Pods for Rebuc
+  pod 'AlamofireObjectMapper', '~> 5.0'
 
   target 'RebucTests' do
     inherit! :search_paths
