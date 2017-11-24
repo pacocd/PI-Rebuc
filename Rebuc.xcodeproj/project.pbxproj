@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC915D921FC87B9E00699802 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC915D911FC87B9E00699802 /* Authentication.storyboard */; };
 		ACF5097D1F683D5200A9548C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5097C1F683D5200A9548C /* AppDelegate.swift */; };
-		ACF5097F1F683D5200A9548C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5097E1F683D5200A9548C /* ViewController.swift */; };
-		ACF509821F683D5200A9548C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF509801F683D5200A9548C /* Main.storyboard */; };
 		ACF509841F683D5200A9548C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACF509831F683D5200A9548C /* Assets.xcassets */; };
 		ACF509871F683D5200A9548C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF509851F683D5200A9548C /* LaunchScreen.storyboard */; };
 		ACF509921F683D5200A9548C /* RebucTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF509911F683D5200A9548C /* RebucTests.swift */; };
@@ -34,10 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC915D911FC87B9E00699802 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		ACF509791F683D5200A9548C /* Rebuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rebuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACF5097C1F683D5200A9548C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ACF5097E1F683D5200A9548C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		ACF509811F683D5200A9548C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACF509831F683D5200A9548C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACF509861F683D5200A9548C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACF509881F683D5200A9548C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,6 +72,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC915D931FC87C4B00699802 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AC915D951FC87C6700699802 /* LaunchScreen */,
+				AC915D941FC87C5400699802 /* Storyboards */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AC915D941FC87C5400699802 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				AC915D911FC87B9E00699802 /* Authentication.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		AC915D951FC87C6700699802 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				ACF509851F683D5200A9548C /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		ACE67D521FC888C000371008 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				ACF509831F683D5200A9548C /* Assets.xcassets */,
+				ACF509881F683D5200A9548C /* Info.plist */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		ACF509701F683D5200A9548C = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +129,9 @@
 		ACF5097B1F683D5200A9548C /* Rebuc */ = {
 			isa = PBXGroup;
 			children = (
+				ACE67D521FC888C000371008 /* Assets */,
+				AC915D931FC87C4B00699802 /* Components */,
 				ACF5097C1F683D5200A9548C /* AppDelegate.swift */,
-				ACF5097E1F683D5200A9548C /* ViewController.swift */,
-				ACF509801F683D5200A9548C /* Main.storyboard */,
-				ACF509831F683D5200A9548C /* Assets.xcassets */,
-				ACF509851F683D5200A9548C /* LaunchScreen.storyboard */,
-				ACF509881F683D5200A9548C /* Info.plist */,
 			);
 			path = Rebuc;
 			sourceTree = "<group>";
@@ -188,23 +217,26 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Paco Chacon de Dios";
 				TargetAttributes = {
 					ACF509781F683D5200A9548C = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = DK89EV2E37;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					ACF5098C1F683D5200A9548C = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = DK89EV2E37;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = ACF509781F683D5200A9548C;
 					};
 					ACF509971F683D5200A9548C = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = DK89EV2E37;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = ACF509781F683D5200A9548C;
 					};
@@ -235,9 +267,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC915D921FC87B9E00699802 /* Authentication.storyboard in Resources */,
 				ACF509871F683D5200A9548C /* LaunchScreen.storyboard in Resources */,
 				ACF509841F683D5200A9548C /* Assets.xcassets in Resources */,
-				ACF509821F683D5200A9548C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +294,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACF5097F1F683D5200A9548C /* ViewController.swift in Sources */,
 				ACF5097D1F683D5200A9548C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,14 +330,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		ACF509801F683D5200A9548C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ACF509811F683D5200A9548C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		ACF509851F683D5200A9548C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -328,7 +351,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -336,7 +361,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -379,7 +408,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -387,7 +418,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -422,7 +457,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pacocd.Rebuc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -435,7 +471,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pacocd.Rebuc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -449,7 +486,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pacocd.RebucTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rebuc.app/Rebuc";
 			};
 			name = Debug;
@@ -464,7 +502,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pacocd.RebucTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rebuc.app/Rebuc";
 			};
 			name = Release;
@@ -478,7 +517,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pacocd.RebucUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Rebuc;
 			};
 			name = Debug;
@@ -492,7 +532,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pacocd.RebucUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Rebuc;
 			};
 			name = Release;
@@ -516,6 +557,7 @@
 				ACF509A31F683D5200A9548C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACF509A41F683D5200A9548C /* Build configuration list for PBXNativeTarget "RebucTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +566,7 @@
 				ACF509A61F683D5200A9548C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACF509A71F683D5200A9548C /* Build configuration list for PBXNativeTarget "RebucUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +575,7 @@
 				ACF509A91F683D5200A9548C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
