@@ -19,4 +19,42 @@ struct URLManager {
         return urlServer
     }
 
+    func getURL(from endpoint: Endpoint) -> String {
+        let url = getBaseURL() + endpoint.getURL()
+        return url
+    }
+
+}
+
+protocol EndpointProtocol {
+    func getURL() -> String
+}
+
+enum Endpoint: EndpointProtocol {
+    case signUp, signIn, campusLocation, dependence, movementTag, ticketMovement, ticket, ticketState, userRole, admin
+    func getURL() -> String {
+        let basePath: String = "/api/v1/"
+        switch self {
+        case .signIn:
+            return "/auth/sign_in"
+        case .signUp:
+            return "/auth"
+        case .campusLocation:
+            return basePath + "campus_locations"
+        case .dependence:
+            return basePath + "dependences"
+        case .movementTag:
+            return basePath + "movement_tags"
+        case .ticketMovement:
+            return basePath + "ticket_movements"
+        case .ticket:
+            return basePath + "tickets"
+        case .ticketState:
+            return basePath + "ticket_states"
+        case .userRole:
+            return basePath + "user_roles"
+        case .admin:
+            return basePath + "admin"
+        }
+    }
 }
