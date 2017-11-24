@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		AC915D921FC87B9E00699802 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC915D911FC87B9E00699802 /* Authentication.storyboard */; };
 		ACF5097D1F683D5200A9548C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5097C1F683D5200A9548C /* AppDelegate.swift */; };
-		ACF5097F1F683D5200A9548C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5097E1F683D5200A9548C /* ViewController.swift */; };
-		ACF509821F683D5200A9548C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF509801F683D5200A9548C /* Main.storyboard */; };
 		ACF509841F683D5200A9548C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACF509831F683D5200A9548C /* Assets.xcassets */; };
 		ACF509871F683D5200A9548C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF509851F683D5200A9548C /* LaunchScreen.storyboard */; };
 		ACF509921F683D5200A9548C /* RebucTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF509911F683D5200A9548C /* RebucTests.swift */; };
@@ -38,8 +36,6 @@
 		AC915D911FC87B9E00699802 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		ACF509791F683D5200A9548C /* Rebuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rebuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACF5097C1F683D5200A9548C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ACF5097E1F683D5200A9548C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		ACF509811F683D5200A9548C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACF509831F683D5200A9548C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACF509861F683D5200A9548C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACF509881F683D5200A9548C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +72,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC915D931FC87C4B00699802 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AC915D951FC87C6700699802 /* LaunchScreen */,
+				AC915D941FC87C5400699802 /* Storyboards */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AC915D941FC87C5400699802 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				AC915D911FC87B9E00699802 /* Authentication.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		AC915D951FC87C6700699802 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				ACF509851F683D5200A9548C /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		ACF509701F683D5200A9548C = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +120,10 @@
 		ACF5097B1F683D5200A9548C /* Rebuc */ = {
 			isa = PBXGroup;
 			children = (
+				AC915D931FC87C4B00699802 /* Components */,
 				ACF5097C1F683D5200A9548C /* AppDelegate.swift */,
-				ACF5097E1F683D5200A9548C /* ViewController.swift */,
-				ACF509801F683D5200A9548C /* Main.storyboard */,
 				ACF509831F683D5200A9548C /* Assets.xcassets */,
-				ACF509851F683D5200A9548C /* LaunchScreen.storyboard */,
 				ACF509881F683D5200A9548C /* Info.plist */,
-				AC915D911FC87B9E00699802 /* Authentication.storyboard */,
 			);
 			path = Rebuc;
 			sourceTree = "<group>";
@@ -241,7 +259,6 @@
 				AC915D921FC87B9E00699802 /* Authentication.storyboard in Resources */,
 				ACF509871F683D5200A9548C /* LaunchScreen.storyboard in Resources */,
 				ACF509841F683D5200A9548C /* Assets.xcassets in Resources */,
-				ACF509821F683D5200A9548C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +283,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACF5097F1F683D5200A9548C /* ViewController.swift in Sources */,
 				ACF5097D1F683D5200A9548C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,14 +319,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		ACF509801F683D5200A9548C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ACF509811F683D5200A9548C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		ACF509851F683D5200A9548C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
