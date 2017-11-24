@@ -1,0 +1,6 @@
+framework module Pods_Rebuc {
+  umbrella header "Pods-Rebuc-umbrella.h"
+
+  export *
+  module * { export * }
+}
