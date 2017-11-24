@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ServerURL</key>
+	<key>URL_Server</key>
 	<string>https://rebuc-api.herokuapp.com</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
