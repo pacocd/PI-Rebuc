@@ -26,3 +26,11 @@ extension UIViewController {
     }
 
 }
+
+extension UIColor {
+
+    class var greenUcolTab: UIColor {
+        return UIColor(red: 57 / 255, green: 165 / 255, blue: 83 / 255, alpha: 1)
+    }
+
+}

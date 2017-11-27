@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setInitialFlow()
+        setAppColors()
         return true
     }
 
@@ -50,6 +51,14 @@ extension AppDelegate {
         let viewController: UIViewController = UIViewController().instantiate(viewController: "LoginViewController", storyboard: "Authentication")
         let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
         window?.rootViewController = navigationController
+    }
+
+    func setAppColors() {
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().backgroundColor = UIColor.greenUcolTab
+        UINavigationBar.appearance().barTintColor = UIColor.greenUcolTab
+        UINavigationBar.appearance().isTranslucent = false
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 
 }
