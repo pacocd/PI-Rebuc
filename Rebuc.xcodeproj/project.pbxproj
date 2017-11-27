@@ -11,6 +11,7 @@
 		45BD4D70B65EB015AF40F92C /* Pods_RebucUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387BBD5428B9F0133A57EB75 /* Pods_RebucUITests.framework */; };
 		AC0CA57B1FCC8D8600F8E333 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA57A1FCC8D8600F8E333 /* UserManager.swift */; };
 		AC0CA57D1FCC909900F8E333 /* Tickets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0CA57C1FCC909900F8E333 /* Tickets.storyboard */; };
+		AC0CA57F1FCC91EF00F8E333 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA57E1FCC91EF00F8E333 /* BaseViewController.swift */; };
 		AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */; };
 		AC6CE1D21FCBD5FD008CC8AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D11FCBD5FD008CC8AD /* User.swift */; };
 		AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */; };
@@ -59,6 +60,7 @@
 		A4080AF5E7400E6B58016AEE /* Pods-RebucTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RebucTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RebucTests/Pods-RebucTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC0CA57A1FCC8D8600F8E333 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		AC0CA57C1FCC909900F8E333 /* Tickets.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tickets.storyboard; sourceTree = "<group>"; };
+		AC0CA57E1FCC91EF00F8E333 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AC6CE1D11FCBD5FD008CC8AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				ACE67D5D1FC8907100371008 /* LoginViewController.swift */,
 				ACE67D5F1FC891E700371008 /* SignUpViewController.swift */,
+				AC0CA57E1FCC91EF00F8E333 /* BaseViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */,
 				AC0CA57B1FCC8D8600F8E333 /* UserManager.swift in Sources */,
 				AC6CE1D71FCBD817008CC8AD /* Protocols.swift in Sources */,
+				AC0CA57F1FCC91EF00F8E333 /* BaseViewController.swift in Sources */,
 				ACE67D601FC891E700371008 /* SignUpViewController.swift in Sources */,
 				AC6CE1DD1FCBDEC5008CC8AD /* APIError.swift in Sources */,
 				AC6CE1DB1FCBDB2E008CC8AD /* Dependence.swift in Sources */,
