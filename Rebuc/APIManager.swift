@@ -14,7 +14,7 @@ struct APIManager {
 
     static let shared: APIManager = APIManager()
 
-    func login(using email: String, and password: String, success: @escaping (User) -> Void, failure: @escaping (Error) -> Void) {
+    func login(using email: String, and password: String, success: @escaping (User, [String: Any]) -> Void, failure: @escaping (Error) -> Void) {
 
         let url = URLManager.shared.getURL(from: .signIn)
         let parameters: Parameters = [
@@ -32,7 +32,7 @@ struct APIManager {
                     } else {
                         if let userData = json["data"] as? [String: Any] {
                             if let user = Mapper<User>().map(JSON: userData) {
-                                success(user)
+                                success(user, response.response?.allHeaderFields as! [String: Any])
                             } else {
                                 failure(APIError())
                             }
@@ -49,7 +49,7 @@ struct APIManager {
         }
     }
 
-    func signUp(using email: String, _ password: String, _ passwordConfirmation: String, _ names: String, _ fatherLastName: String, _ motherLastName: String?, _ dependenceId: Int, success: @escaping (User) -> Void, failure: @escaping (Error) -> Void) {
+    func signUp(using email: String, _ password: String, _ passwordConfirmation: String, _ names: String, _ fatherLastName: String, _ motherLastName: String?, _ dependenceId: Int, success: @escaping (User, [String: Any]) -> Void, failure: @escaping (Error) -> Void) {
 
         let url: String = URLManager.shared.getURL(from: .signUp)
         let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
@@ -73,7 +73,7 @@ struct APIManager {
                         failure(error)
                     } else if let userData = json["user"] as? [String: Any] {
                         if let user = Mapper<User>().map(JSON: userData) {
-                            success(user)
+                            success(user, response.response?.allHeaderFields as! [String: Any])
                         } else {
                             failure(APIError())
                         }
