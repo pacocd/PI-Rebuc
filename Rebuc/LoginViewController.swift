@@ -27,9 +27,9 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func login(_ sender: Any) {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        guard !email.isEmpty && !password.isEmpty else { return }
+        guard let email = emailTextField.text else { showBasicAlert(with: "El Email es requerido") ;return }
+        guard let password = passwordTextField.text else { showBasicAlert(with: "El password es requerido") ;return }
+        guard !email.isEmpty && !password.isEmpty else { showBasicAlert(with: "Ambos campos son requeridos") ;return }
         let fullEmail = email + "@ucol.mx"
 
         APIManager.shared.login(using: fullEmail, and: password, success: { (user) in

@@ -16,4 +16,13 @@ extension UIViewController {
         return viewController
     }
 
+    func showBasicAlert(with message: String) {
+        let alertController: UIAlertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let alertAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        DispatchQueue.main.async { [unowned self] in
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+
 }
