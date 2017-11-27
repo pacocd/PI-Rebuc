@@ -40,7 +40,8 @@ struct APIManager {
                             failure(APIError())
                         }
                     }
-
+                } else {
+                    failure(APIError())
                 }
             case .failure(let error):
                 failure(error)
@@ -78,6 +79,8 @@ struct APIManager {
                     } else {
                         failure(APIError())
                     }
+                } else {
+                    failure(APIError())
                 }
             case .failure(let error):
                 failure(error)
@@ -85,7 +88,7 @@ struct APIManager {
         }
     }
 
-    func getObject<T: Mappable>(of type: T.Type, using id: Int, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Model {
+    func getObject<T>(of type: T.Type, using id: Int, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Mappable, T: Model {
 
         let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
         let url = "\(T.getUrl())/\(id)"
@@ -105,6 +108,37 @@ struct APIManager {
                     } else {
                         failure(APIError())
                     }
+                } else {
+                    failure(APIError())
+                }
+            case .failure(let error):
+                failure(error)
+            }
+        }
+    }
+
+    func getObjects<T>(of type: T.Type, success: @escaping([T]) -> Void, failure: @escaping(Error) -> Void) where T: Mappable, T: Model {
+
+        let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
+        let url = "\(T.getUrl())"
+
+        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseArray) in
+            switch responseArray.result {
+            case .success:
+                if let json = responseArray.value as? [String: Any] {
+                    if let error = self.parseErrorFromResponse(findingIn: json) {
+                        failure(error)
+                    } else if let objectArrayData = json[T.pluralNodeName()] as? [[String: Any]] {
+                        if let objectArray = Mapper<T>().mapArray(JSONObject: objectArrayData) {
+                            success(objectArray)
+                        } else {
+                            failure(APIError())
+                        }
+                    } else {
+                        failure(APIError())
+                    }
+                } else {
+                    failure(APIError())
                 }
             case .failure(let error):
                 failure(error)
