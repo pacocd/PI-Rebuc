@@ -85,6 +85,33 @@ struct APIManager {
         }
     }
 
+    func getObject<T: Mappable>(of type: T.Type, using id: Int, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Model {
+
+        let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
+        let url = "\(T.getUrl())/\(id)"
+
+        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let json = response.value as? [String: Any] {
+                    if let error = self.parseErrorFromResponse(findingIn: json) {
+                        failure(error)
+                    } else if let objectData = json[T.singularNodeName()] as? [String: Any] {
+                        if let object = Mapper<T>().map(JSON: objectData) {
+                            success(object)
+                        } else {
+                            failure(APIError())
+                        }
+                    } else {
+                        failure(APIError())
+                    }
+                }
+            case .failure(let error):
+                failure(error)
+            }
+        }
+    }
+
     fileprivate func parseErrorFromResponse(findingIn json: [String: Any]) -> APIError? {
         var errorMessage: String?
         var errorMessages: [String]?
