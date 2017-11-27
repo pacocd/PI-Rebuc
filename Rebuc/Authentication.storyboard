@@ -74,6 +74,9 @@
                                 <state key="normal" title="Registrarse">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUp:" destination="hjs-r2-Ftd" eventType="touchUpInside" id="P23-qs-Uh0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -105,6 +108,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o9A-2A-c7N"/>
                     </view>
+                    <connections>
+                        <outlet property="dependenceTextField" destination="puP-g3-hbu" id="AKv-L2-xgb"/>
+                        <outlet property="emailTextField" destination="arL-42-AEy" id="2xQ-2O-DLu"/>
+                        <outlet property="fatherLastNameTextField" destination="vCX-Ib-LhF" id="qpV-BZ-rJv"/>
+                        <outlet property="motherLastNameTextField" destination="Dt2-hN-c2m" id="6oa-Vz-Bgf"/>
+                        <outlet property="namesTextField" destination="eqc-MX-Q2X" id="8A4-0R-hHb"/>
+                        <outlet property="passwordConfirmationTextField" destination="oEv-SY-GqR" id="vGJ-x5-s1v"/>
+                        <outlet property="passwordTextField" destination="1ro-74-mpM" id="SYH-4y-Apr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ytg-cN-68Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -123,25 +135,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rebuc-logo" translatesAutoresizingMaskIntoConstraints="NO" id="TIT-yL-0je">
-                                <rect key="frame" x="0.0" y="20" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="C7x-BJ-u5P"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rxe-3p-DIU">
-                                <rect key="frame" x="16" y="220" width="257.5" height="30"/>
+                                <rect key="frame" x="16" y="230" width="257.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7tZ-6e-mKw">
-                                <rect key="frame" x="16" y="270" width="343" height="30"/>
+                                <rect key="frame" x="16" y="280" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ucol.mx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiI-dV-wPa">
-                                <rect key="frame" x="283.5" y="224.5" width="75.5" height="21"/>
+                                <rect key="frame" x="283.5" y="234.5" width="75.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="EMX-3K-kAL"/>
                                 </constraints>
@@ -150,7 +162,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F79-4b-mPf">
-                                <rect key="frame" x="16" y="343" width="343" height="45"/>
+                                <rect key="frame" x="16" y="353" width="343" height="45"/>
                                 <color key="backgroundColor" red="0.2225409169" green="0.64776332489999999" blue="0.327020688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="6jk-lN-quW"/>
@@ -163,7 +175,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-BQ-OF2">
-                                <rect key="frame" x="16" y="412" width="343" height="45"/>
+                                <rect key="frame" x="16" y="422" width="343" height="45"/>
                                 <color key="backgroundColor" red="0.27160237409999999" green="0.79056947970000002" blue="0.39911579619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="KY9-Yj-eOr"/>
@@ -190,7 +202,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ayc-BQ-OF2" secondAttribute="trailing" id="QfY-pm-0QT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7tZ-6e-mKw" secondAttribute="trailing" id="RNc-Gg-bst"/>
                             <constraint firstItem="7tZ-6e-mKw" firstAttribute="leading" secondItem="jD8-ql-JcS" secondAttribute="leadingMargin" id="cAs-Wc-04D"/>
-                            <constraint firstItem="TIT-yL-0je" firstAttribute="top" secondItem="zOn-dZ-fay" secondAttribute="bottom" id="e5p-K6-qCS"/>
+                            <constraint firstItem="TIT-yL-0je" firstAttribute="top" secondItem="zOn-dZ-fay" secondAttribute="bottom" constant="10" id="e5p-K6-qCS"/>
                             <constraint firstItem="eiI-dV-wPa" firstAttribute="leading" secondItem="Rxe-3p-DIU" secondAttribute="trailing" constant="10" id="eKV-JD-UkN"/>
                             <constraint firstItem="Rxe-3p-DIU" firstAttribute="leading" secondItem="jD8-ql-JcS" secondAttribute="leadingMargin" id="wo4-yh-YxX"/>
                             <constraint firstItem="F79-4b-mPf" firstAttribute="leading" secondItem="jD8-ql-JcS" secondAttribute="leadingMargin" id="zdg-Wh-EWG"/>
