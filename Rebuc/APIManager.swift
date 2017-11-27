@@ -146,6 +146,27 @@ struct APIManager {
         }
     }
 
+    func getObjectsWithToken<T>(of type: T.Type, success: @escaping([T]) -> Void) where T: Mappable, T: Model {
+        let url: String = T.getUrl()
+        let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
+
+        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let json = response.value as? [String: Any] {
+                    if let objectsArray = json[T.pluralNodeName()] as? [[String: Any]] {
+                        if let objects = Mapper<T>().mapArray(JSONObject: objectsArray) {
+                            UserManager.shared.saveOnDefaults(token: response.response?.allHeaderFields as! [String: Any])
+                            success(objects)
+                        }
+                    }
+                }
+            case .failure(let error):
+                UIViewController().showBasicAlert(with: error.localizedDescription)
+            }
+        }
+    }
+
     func getUser(success: @escaping(User, [String: Any]) -> Void) {
 
         let url: String = User.getUrl()
