@@ -16,8 +16,8 @@ class User: Mappable, Model {
     var fatherLastName: String!
     var motherLastName: String?
     var email: String!
-    var dependence: [String: Any]!
-    var userRole: [String: Any]!
+    var dependence: Dependence!
+    var userRole: UserRole!
 
     required init?(map: Map) {
     }

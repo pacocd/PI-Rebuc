@@ -8,10 +8,11 @@
 
 import Foundation
 import Alamofire
+import ObjectMapper
 
 struct APIManager {
 
-    func login(using email: String, and password: String, success: @escaping ([String: Any]) -> Void, failure: @escaping (Error) -> Void) {
+    func login(using email: String, and password: String, success: @escaping (User) -> Void, failure: @escaping (Error) -> Void) {
 
         let url = URLManager.shared.getURL(from: .signIn)
         let parameters: Parameters = [
@@ -24,7 +25,9 @@ struct APIManager {
             switch response.result {
             case .success:
                 if let json = response.value as? [String: Any] {
-                    success(json)
+                    if let user = Mapper<User>().map(JSON: json) {
+                        success(user)
+                    }
                 }
             case .failure(let error):
                 failure(error)
