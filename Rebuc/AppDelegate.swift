@@ -47,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
 
     func setInitialFlow() {
-        window?.rootViewController = UIViewController().instantiate(viewController: "LoginViewController", storyboard: "Authentication")
+        let viewController: UIViewController = UIViewController().instantiate(viewController: "LoginViewController", storyboard: "Authentication")
+        let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+        window?.rootViewController = navigationController
     }
 
 }

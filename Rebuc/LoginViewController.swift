@@ -30,8 +30,9 @@ class LoginViewController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard !email.isEmpty && !password.isEmpty else { return }
+        let fullEmail = email + "@ucol.mx"
 
-        APIManager.shared.login(using: email, and: password, success: { (user) in
+        APIManager.shared.login(using: fullEmail, and: password, success: { (user) in
             print(user.name)
         }) { (error) in
             print(error.localizedDescription)
@@ -40,6 +41,8 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func showSignUp(_ sender: Any) {
+        let viewController = instantiate(viewController: "SignUpViewController", storyboard: "Authentication")
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
 }
