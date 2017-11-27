@@ -10,6 +10,7 @@
 		048BA237373BB16BFB172E40 /* Pods_RebucTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0BC51A5967F74856A0AB494 /* Pods_RebucTests.framework */; };
 		45BD4D70B65EB015AF40F92C /* Pods_RebucUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387BBD5428B9F0133A57EB75 /* Pods_RebucUITests.framework */; };
 		AC0CA57B1FCC8D8600F8E333 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA57A1FCC8D8600F8E333 /* UserManager.swift */; };
+		AC0CA57D1FCC909900F8E333 /* Tickets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0CA57C1FCC909900F8E333 /* Tickets.storyboard */; };
 		AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */; };
 		AC6CE1D21FCBD5FD008CC8AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D11FCBD5FD008CC8AD /* User.swift */; };
 		AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */; };
@@ -57,6 +58,7 @@
 		A0BC51A5967F74856A0AB494 /* Pods_RebucTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RebucTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4080AF5E7400E6B58016AEE /* Pods-RebucTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RebucTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RebucTests/Pods-RebucTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC0CA57A1FCC8D8600F8E333 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		AC0CA57C1FCC909900F8E333 /* Tickets.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tickets.storyboard; sourceTree = "<group>"; };
 		AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AC6CE1D11FCBD5FD008CC8AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				ACF509851F683D5200A9548C /* LaunchScreen.storyboard */,
 				AC915D911FC87B9E00699802 /* Authentication.storyboard */,
+				AC0CA57C1FCC909900F8E333 /* Tickets.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC0CA57D1FCC909900F8E333 /* Tickets.storyboard in Resources */,
 				AC915D921FC87B9E00699802 /* Authentication.storyboard in Resources */,
 				ACF509871F683D5200A9548C /* LaunchScreen.storyboard in Resources */,
 				ACF509841F683D5200A9548C /* Assets.xcassets in Resources */,
