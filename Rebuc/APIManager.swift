@@ -57,7 +57,7 @@ struct APIManager {
             "email": email,
             "password": password,
             "password_confirmation": passwordConfirmation,
-            "user_role_id": 3,
+            "user_role_id": 2,
             "father_last_name": fatherLastName,
             "mother_last_name": motherLastName ?? "",
             "dependence_id": dependenceId,
@@ -68,6 +68,7 @@ struct APIManager {
             switch response.result {
             case .success:
                 if let json = response.value as? [String: Any] {
+                    print(json)
                     if let error = self.parseErrorFromResponse(findingIn: json) {
                         failure(error)
                     } else if let userData = json["user"] as? [String: Any] {
