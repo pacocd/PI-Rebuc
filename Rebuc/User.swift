@@ -9,10 +9,10 @@
 import Foundation
 import ObjectMapper
 
-class User: Mappable {
+class User: Mappable, Model {
 
-    var id: Int!
-    var name: String!
+    var id: Int = 0
+    var name: String = ""
     var fatherLastName: String!
     var motherLastName: String?
     var email: String!
@@ -30,5 +30,9 @@ class User: Mappable {
         email               <- map["uid"]
         dependence          <- map["dependence"]
         userRole            <- map["user_role"]
+    }
+
+    func getUrl() -> String {
+        return ""
     }
 }

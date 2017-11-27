@@ -11,6 +11,8 @@
 		45BD4D70B65EB015AF40F92C /* Pods_RebucUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387BBD5428B9F0133A57EB75 /* Pods_RebucUITests.framework */; };
 		AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */; };
 		AC6CE1D21FCBD5FD008CC8AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D11FCBD5FD008CC8AD /* User.swift */; };
+		AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */; };
+		AC6CE1D71FCBD817008CC8AD /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D61FCBD817008CC8AD /* Protocols.swift */; };
 		AC915D921FC87B9E00699802 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC915D911FC87B9E00699802 /* Authentication.storyboard */; };
 		ACE67D5E1FC8907100371008 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE67D5D1FC8907100371008 /* LoginViewController.swift */; };
 		ACE67D601FC891E700371008 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE67D5F1FC891E700371008 /* SignUpViewController.swift */; };
@@ -52,6 +54,8 @@
 		A4080AF5E7400E6B58016AEE /* Pods-RebucTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RebucTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RebucTests/Pods-RebucTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AC6CE1D11FCBD5FD008CC8AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
+		AC6CE1D61FCBD817008CC8AD /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		AC915D911FC87B9E00699802 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		ACE67D5D1FC8907100371008 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ACE67D5F1FC891E700371008 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				AC6CE1D11FCBD5FD008CC8AD /* User.swift */,
+				AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -174,12 +179,13 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
-		ACE67D641FC89D5B00371008 /* Extensions */ = {
+		ACE67D641FC89D5B00371008 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				ACE67D651FC89F1900371008 /* Extensions.swift */,
+				AC6CE1D61FCBD817008CC8AD /* Protocols.swift */,
 			);
-			name = Extensions;
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		ACF509701F683D5200A9548C = {
@@ -208,7 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				AC6CE1D01FCBD5EA008CC8AD /* Models */,
-				ACE67D641FC89D5B00371008 /* Extensions */,
+				ACE67D641FC89D5B00371008 /* Utils */,
 				ACE67D611FC892EA00371008 /* Managers */,
 				ACE67D5C1FC8903200371008 /* Controllers */,
 				ACE67D5A1FC88FC900371008 /* Components */,
@@ -541,6 +547,8 @@
 			files = (
 				AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */,
 				ACE67D661FC89F1900371008 /* Extensions.swift in Sources */,
+				AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */,
+				AC6CE1D71FCBD817008CC8AD /* Protocols.swift in Sources */,
 				ACE67D601FC891E700371008 /* SignUpViewController.swift in Sources */,
 				ACE67D631FC8930500371008 /* URLManager.swift in Sources */,
 				ACE67D5E1FC8907100371008 /* LoginViewController.swift in Sources */,
