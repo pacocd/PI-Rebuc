@@ -27,15 +27,43 @@ struct APIManager {
             switch response.result {
             case .success:
                 if let json = response.value as? [String: Any] {
-                    if let userData = json["data"] as? [String: Any] {
-                        if let user = Mapper<User>().map(JSON: userData) {
-                            success(user)
+                    if let error = self.parseErrorFromResponse(findingIn: json) {
+                        failure(error)
+                    } else {
+                        if let userData = json["data"] as? [String: Any] {
+                            if let user = Mapper<User>().map(JSON: userData) {
+                                success(user)
+                            } else {
+                                failure(APIError())
+                            }
+                        } else {
+                            failure(APIError())
                         }
                     }
+
                 }
             case .failure(let error):
                 failure(error)
             }
+        }
+    }
+
+    fileprivate func parseErrorFromResponse(findingIn json: [String: Any]) -> APIError? {
+        var errorMessage: String?
+        var errorMessages: [String]?
+        if let error = json["error"] as? String {
+            errorMessage = error
+        } else if let errors = json["errors"] as? [String] {
+            errorMessages = errors
+        }
+        if let errorMessages = errorMessages {
+            errorMessage = errorMessages.joined(separator: "\n")
+        }
+
+        if let errorMessage = errorMessage {
+            return APIError(message: errorMessage, code: 400)
+        } else {
+            return nil
         }
     }
 
