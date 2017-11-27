@@ -68,7 +68,6 @@ struct APIManager {
             switch response.result {
             case .success:
                 if let json = response.value as? [String: Any] {
-                    print(json)
                     if let error = self.parseErrorFromResponse(findingIn: json) {
                         failure(error)
                     } else if let userData = json["user"] as? [String: Any] {

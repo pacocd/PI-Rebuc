@@ -31,7 +31,7 @@ class SignUpViewController: BaseViewController {
             self.dependences = dependences
             self.dependencePicker.reloadAllComponents()
         }) { (error) in
-            print(error)
+            self.showBasicAlert(with: error.localizedDescription)
         }
         dependenceTextField.inputView = dependencePicker
         navigationItem.title = "Registro"
@@ -55,7 +55,12 @@ class SignUpViewController: BaseViewController {
         guard password == passwordConfirmation else { showBasicAlert(with: "La contraseña y su confirmación deben coincidir"); return }
 
         APIManager.shared.signUp(using: email, password, passwordConfirmation, names, fatherLastName, motherLastNameTextField.text, dependenceId, success: { (user, headers) in
-            print(user)
+            UserManager.shared.user = user
+            UserManager.shared.saveOnDefaults(token: headers)
+            let viewController: UIViewController = self.instantiate(viewController: "TicketsViewController", storyboard: "Tickets")
+            let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+            self.present(navigationController, animated: true, completion: nil)
+            NotificationCenter.default.post(name: .userDidSet, object: nil)
         }) { (error) in
             self.showBasicAlert(with: error.localizedDescription)
         }
