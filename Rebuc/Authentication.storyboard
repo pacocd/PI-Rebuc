@@ -158,6 +158,9 @@
                                 <state key="normal" title="Entrar">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="login:" destination="NtA-X2-T57" eventType="touchUpInside" id="PMq-Zs-lIq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-BQ-OF2">
                                 <rect key="frame" x="16" y="412" width="343" height="45"/>
@@ -168,6 +171,9 @@
                                 <state key="normal" title="Crear cuenta">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="showSignUp:" destination="NtA-X2-T57" eventType="touchUpInside" id="mcb-sJ-QVl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -192,6 +198,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jZ8-BA-ty0"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Rxe-3p-DIU" id="cdT-oE-0xa"/>
+                        <outlet property="passwordTextField" destination="7tZ-6e-mKw" id="qKC-ra-J7e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o6L-Su-eAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

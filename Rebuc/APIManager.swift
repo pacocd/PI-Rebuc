@@ -12,6 +12,8 @@ import ObjectMapper
 
 struct APIManager {
 
+    static let shared: APIManager = APIManager()
+
     func login(using email: String, and password: String, success: @escaping (User) -> Void, failure: @escaping (Error) -> Void) {
 
         let url = URLManager.shared.getURL(from: .signIn)
@@ -25,8 +27,10 @@ struct APIManager {
             switch response.result {
             case .success:
                 if let json = response.value as? [String: Any] {
-                    if let user = Mapper<User>().map(JSON: json) {
-                        success(user)
+                    if let userData = json["data"] as? [String: Any] {
+                        if let user = Mapper<User>().map(JSON: userData) {
+                            success(user)
+                        }
                     }
                 }
             case .failure(let error):
