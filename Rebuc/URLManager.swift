@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 struct URLManager {
 
@@ -17,6 +18,13 @@ struct URLManager {
         let dict: NSDictionary? = NSDictionary(contentsOfFile: path!)
         let urlServer: String = dict?["URL_Server"] as! String
         return urlServer
+    }
+
+    func getBaseRequestHeaders() -> HTTPHeaders {
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        return headers
     }
 
     func getURL(from endpoint: Endpoint) -> String {
