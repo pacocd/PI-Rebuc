@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        setInitialFlow()
+        setAppColors()
         return true
     }
 
@@ -41,6 +43,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+extension AppDelegate {
+
+    func setInitialFlow() {
+        var navigationController: UINavigationController?
+        if UserManager.shared.isUserLogged() {
+            let viewController: UIViewController = UIViewController().instantiate(viewController: "TicketsViewController", storyboard: "Tickets")
+            navigationController = UINavigationController(rootViewController: viewController)
+
+            APIManager.shared.getUser(success: { (user, headers) in
+                UserManager.shared.user = user
+                UserManager.shared.saveOnDefaults(token: headers)
+                NotificationCenter.default.post(name: .userDidSet, object: nil)
+            })
+        } else {
+            let viewController: UIViewController = UIViewController().instantiate(viewController: "LoginViewController", storyboard: "Authentication")
+            navigationController = UINavigationController(rootViewController: viewController)
+        }
+
+        window?.rootViewController = navigationController
+
+    }
+
+    func setAppColors() {
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().backgroundColor = UIColor.greenUcolTab
+        UINavigationBar.appearance().barTintColor = UIColor.greenUcolTab
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+
+}
