@@ -34,3 +34,15 @@ extension UIColor {
     }
 
 }
+
+extension Notification.Name {
+
+    static var userDidSet: Notification.Name {
+        return Notification.Name("UserDidSet")
+    }
+
+    static var userDidDeleted: Notification.Name {
+        return Notification.Name("UserDidDeleted")
+    }
+
+}

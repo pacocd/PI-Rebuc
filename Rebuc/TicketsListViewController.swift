@@ -13,6 +13,8 @@ class TicketsListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.title = "Tickets"
         // Do any additional setup after loading the view.
     }
 

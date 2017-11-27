@@ -54,7 +54,7 @@ class SignUpViewController: BaseViewController {
         guard password.count > 7 && passwordConfirmation.count > 7 else { showBasicAlert(with: "La contraseña es muy corta (Mínimo 8 caracteres)"); return }
         guard password == passwordConfirmation else { showBasicAlert(with: "La contraseña y su confirmación deben coincidir"); return }
 
-        APIManager.shared.signUp(using: email, password, passwordConfirmation, names, fatherLastName, motherLastNameTextField.text, dependenceId, success: { (user) in
+        APIManager.shared.signUp(using: email, password, passwordConfirmation, names, fatherLastName, motherLastNameTextField.text, dependenceId, success: { (user, headers) in
             print(user)
         }) { (error) in
             self.showBasicAlert(with: error.localizedDescription)

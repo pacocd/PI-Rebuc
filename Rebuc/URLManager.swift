@@ -39,7 +39,7 @@ protocol EndpointProtocol {
 }
 
 enum Endpoint: EndpointProtocol {
-    case signUp, signIn, campusLocation, dependence, movementTag, ticketMovement, ticket, ticketState, userRole, admin
+    case signUp, signIn, campusLocation, dependence, movementTag, ticketMovement, ticket, ticketState, userRole, admin, userInfo
     func getURL() -> String {
         let basePath: String = "/api/v1/"
         switch self {
@@ -63,6 +63,8 @@ enum Endpoint: EndpointProtocol {
             return basePath + "user_roles"
         case .admin:
             return basePath + "admin"
+        case .userInfo:
+            return basePath + "user"
         }
     }
 }

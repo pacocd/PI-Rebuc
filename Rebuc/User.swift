@@ -13,7 +13,7 @@ class User: Mappable, Model {
 
     var id: Int = 0
     var name: String = ""
-    var fatherLastName: String!
+    var fatherLastName: String?
     var motherLastName: String?
     var email: String!
     var dependence: Dependence!
@@ -33,7 +33,7 @@ class User: Mappable, Model {
     }
 
     static func getUrl() -> String {
-        return ""
+        return URLManager.shared.getURL(from: .userInfo)
     }
 
     static func singularNodeName() -> String {

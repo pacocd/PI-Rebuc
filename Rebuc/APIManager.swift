@@ -147,6 +147,26 @@ struct APIManager {
         }
     }
 
+    func getUser(success: @escaping(User, [String: Any]) -> Void) {
+
+        let url: String = User.getUrl()
+        let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
+
+        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let json = response.value as? [String: Any] {
+                    if let userJson = json[User.singularNodeName()] as? [String: Any] {
+                        if let user = Mapper<User>().map(JSON: userJson) {
+                            success(user, response.response?.allHeaderFields as! [String: Any])
+                        }
+                    }
+                }
+            case .failure(let error):
+                UIViewController().showBasicAlert(with: error.localizedDescription)
+            }
+        }
+    }
     fileprivate func parseErrorFromResponse(findingIn json: [String: Any]) -> APIError? {
         var errorMessage: String?
         var errorMessages: [String]?

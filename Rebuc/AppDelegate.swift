@@ -48,9 +48,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
 
     func setInitialFlow() {
-        let viewController: UIViewController = UIViewController().instantiate(viewController: "LoginViewController", storyboard: "Authentication")
-        let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+        var navigationController: UINavigationController?
+        if UserManager.shared.isUserLogged() {
+            let viewController: UIViewController = UIViewController().instantiate(viewController: "TicketsViewController", storyboard: "Tickets")
+            navigationController = UINavigationController(rootViewController: viewController)
+
+            APIManager.shared.getUser(success: { (user, headers) in
+                UserManager.shared.user = user
+                UserManager.shared.saveOnDefaults(token: headers)
+                NotificationCenter.default.post(name: .userDidSet, object: nil)
+            })
+        } else {
+            let viewController: UIViewController = UIViewController().instantiate(viewController: "LoginViewController", storyboard: "Authentication")
+            navigationController = UINavigationController(rootViewController: viewController)
+        }
+
         window?.rootViewController = navigationController
+
     }
 
     func setAppColors() {

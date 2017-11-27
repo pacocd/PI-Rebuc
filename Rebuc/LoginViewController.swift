@@ -17,6 +17,7 @@ class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.leftBarButtonItem = nil
         navigationItem.title = "Login"
         // Do any additional setup after loading the view.
     }
@@ -33,17 +34,21 @@ class LoginViewController: BaseViewController {
         guard !email.isEmpty && !password.isEmpty else { showBasicAlert(with: "Ambos campos son requeridos") ;return }
         let fullEmail = email + "@ucol.mx"
 
-        APIManager.shared.login(using: fullEmail, and: password, success: { (user) in
-            print(user.name)
+        APIManager.shared.login(using: fullEmail, and: password, success: { (user, headers) in
+            UserManager.shared.user = user
+            UserManager.shared.saveOnDefaults(token: headers)
+            let viewController: UIViewController = self.instantiate(viewController: "TicketsViewController", storyboard: "Tickets")
+            let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+            self.present(navigationController, animated: true, completion: nil)
+            NotificationCenter.default.post(name: .userDidSet, object: nil)
         }) { (error) in
             self.showBasicAlert(with: error.localizedDescription)
         }
     }
 
-    
     @IBAction func showSignUp(_ sender: Any) {
         let viewController = instantiate(viewController: "SignUpViewController", storyboard: "Authentication")
-        var navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+        let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
         // navigationController?.pushViewController(viewController, animated: true)
         present(navigationController, animated: true, completion: nil)
     }
