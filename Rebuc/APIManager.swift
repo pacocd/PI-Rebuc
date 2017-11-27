@@ -48,6 +48,43 @@ struct APIManager {
         }
     }
 
+    func signUp(using email: String, _ password: String, _ passwordConfirmation: String, _ names: String, _ fatherLastName: String, _ motherLastName: String?, _ dependenceId: Int, success: @escaping (User) -> Void, failure: @escaping (Error) -> Void) {
+
+        let url: String = URLManager.shared.getURL(from: .signUp)
+        let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
+        let parameters: Parameters = [
+            "email": email,
+            "password": password,
+            "password_confirmation": passwordConfirmation,
+            "user_role_id": 3,
+            "father_last_name": fatherLastName,
+            "mother_last_name": motherLastName ?? "",
+            "dependence_id": dependenceId,
+            "name": names
+        ]
+
+        request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let json = response.value as? [String: Any] {
+                    if let error = self.parseErrorFromResponse(findingIn: json) {
+                        failure(error)
+                    } else if let userData = json["user"] as? [String: Any] {
+                        if let user = Mapper<User>().map(JSON: userData) {
+                            success(user)
+                        } else {
+                            failure(APIError())
+                        }
+                    } else {
+                        failure(APIError())
+                    }
+                }
+            case .failure(let error):
+                failure(error)
+            }
+        }
+    }
+
     fileprivate func parseErrorFromResponse(findingIn json: [String: Any]) -> APIError? {
         var errorMessage: String?
         var errorMessages: [String]?
