@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -43,7 +43,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func showSignUp(_ sender: Any) {
         let viewController = instantiate(viewController: "SignUpViewController", storyboard: "Authentication")
-        navigationController?.pushViewController(viewController, animated: true)
+        var navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+        // navigationController?.pushViewController(viewController, animated: true)
+        present(navigationController, animated: true, completion: nil)
     }
 
 }
