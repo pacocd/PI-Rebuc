@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         APIManager.shared.login(using: fullEmail, and: password, success: { (user) in
             print(user.name)
         }) { (error) in
-            print(error.localizedDescription)
+            self.showBasicAlert(with: error.localizedDescription)
         }
     }
 
