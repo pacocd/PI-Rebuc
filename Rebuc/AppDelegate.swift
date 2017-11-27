@@ -58,6 +58,8 @@ extension AppDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.greenUcolTab
         UINavigationBar.appearance().barTintColor = UIColor.greenUcolTab
         UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+
         UIApplication.shared.statusBarStyle = .lightContent
     }
 
