@@ -152,8 +152,10 @@ struct APIManager {
         var errorMessages: [String]?
         if let error = json["error"] as? String {
             errorMessage = error
-        } else if let errors = json["errors"] as? [String] {
-            errorMessages = errors
+        } else if let errors = json["errors"] as? [String: Any] {
+            if let fullMessageErrors = errors["full_messages"] as? [String] {
+                errorMessages = fullMessageErrors
+            }
         }
         if let errorMessages = errorMessages {
             errorMessage = errorMessages.joined(separator: "\n")

@@ -51,6 +51,8 @@ class SignUpViewController: UIViewController {
         guard let passwordConfirmation = passwordConfirmationTextField.text else { return }
         guard !names.isEmpty && !fatherLastName.isEmpty && !email.isEmpty && !password.isEmpty && !passwordConfirmation.isEmpty  && !(dependenceTextField.text?.isEmpty)! else { showBasicAlert(with: "Todos los campos con * son requeridos"); return }
         guard let dependenceId = pickedDependence?.id else { return }
+        guard password.count > 7 && passwordConfirmation.count > 7 else { showBasicAlert(with: "La contraseña es muy corta (Mínimo 8 caracteres)"); return }
+        guard password == passwordConfirmation else { showBasicAlert(with: "La contraseña y su confirmación deben coincidir"); return }
 
         APIManager.shared.signUp(using: email, password, passwordConfirmation, names, fatherLastName, motherLastNameTextField.text, dependenceId, success: { (user) in
             print(user)
