@@ -11,24 +11,14 @@ import Alamofire
 
 struct UserManager {
 
-    static let shared: UserManager = UserManager()
+    static var shared: UserManager = UserManager()
     var user: User?
 
-    func saveOnDefaults(token value: String) {
+    func saveOnDefaults(token value: [String: Any]) {
         let defaults: UserDefaults = UserDefaults.standard
-        defaults.set(value, forKey: "user-token-auth")
-        defaults.synchronize()
-    }
-
-    func saveOnDefaults(client value: String) {
-        let defaults: UserDefaults = UserDefaults.standard
-        defaults.set(value, forKey: "user-client-auth")
-        defaults.synchronize()
-    }
-
-    func saveOnDefaults(uid value: String) {
-        let defaults: UserDefaults = UserDefaults.standard
-        defaults.set(value, forKey: "user-uid-auth")
+        defaults.set(value["Access-Token"] as! String, forKey: "user-token-auth")
+        defaults.set(value["Client"] as! String, forKey: "user-client-auth")
+        defaults.set(value["Uid"] as! String, forKey: "user-uid-auth")
         defaults.synchronize()
     }
 
