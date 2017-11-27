@@ -13,6 +13,7 @@
 		AC6CE1D21FCBD5FD008CC8AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D11FCBD5FD008CC8AD /* User.swift */; };
 		AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */; };
 		AC6CE1D71FCBD817008CC8AD /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D61FCBD817008CC8AD /* Protocols.swift */; };
+		AC6CE1D91FCBDA1F008CC8AD /* CampusLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D81FCBDA1F008CC8AD /* CampusLocation.swift */; };
 		AC915D921FC87B9E00699802 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC915D911FC87B9E00699802 /* Authentication.storyboard */; };
 		ACE67D5E1FC8907100371008 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE67D5D1FC8907100371008 /* LoginViewController.swift */; };
 		ACE67D601FC891E700371008 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE67D5F1FC891E700371008 /* SignUpViewController.swift */; };
@@ -56,6 +57,7 @@
 		AC6CE1D11FCBD5FD008CC8AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		AC6CE1D61FCBD817008CC8AD /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		AC6CE1D81FCBDA1F008CC8AD /* CampusLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusLocation.swift; sourceTree = "<group>"; };
 		AC915D911FC87B9E00699802 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		ACE67D5D1FC8907100371008 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ACE67D5F1FC891E700371008 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				AC6CE1D11FCBD5FD008CC8AD /* User.swift */,
 				AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */,
+				AC6CE1D81FCBDA1F008CC8AD /* CampusLocation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */,
 				AC6CE1D71FCBD817008CC8AD /* Protocols.swift in Sources */,
 				ACE67D601FC891E700371008 /* SignUpViewController.swift in Sources */,
+				AC6CE1D91FCBDA1F008CC8AD /* CampusLocation.swift in Sources */,
 				ACE67D631FC8930500371008 /* URLManager.swift in Sources */,
 				ACE67D5E1FC8907100371008 /* LoginViewController.swift in Sources */,
 				ACF5097D1F683D5200A9548C /* AppDelegate.swift in Sources */,

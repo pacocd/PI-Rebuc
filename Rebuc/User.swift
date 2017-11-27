@@ -35,4 +35,5 @@ class User: Mappable, Model {
     func getUrl() -> String {
         return ""
     }
+
 }
