@@ -22,8 +22,16 @@ class UserRole: Mappable, Model {
         name    <- map["name"]
     }
 
-    func getUrl() -> String {
+    static func getUrl() -> String {
         return URLManager.shared.getURL(from: .userRole)
+    }
+
+    static func singularNodeName() -> String {
+        return "user_role"
+    }
+
+    static func pluralNodeName() -> String {
+        return "user_roles"
     }
 
 }

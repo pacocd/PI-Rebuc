@@ -24,8 +24,16 @@ class Dependence: Mappable, Model {
         campusLocation  <- map["campus_location"]
     }
 
-    func getUrl() -> String {
+    static func getUrl() -> String {
         return URLManager.shared.getURL(from: .dependence)
+    }
+
+    static func singularNodeName() -> String {
+        return "dependence"
+    }
+
+    static func pluralNodeName() -> String {
+        return "dependences"
     }
 
 }

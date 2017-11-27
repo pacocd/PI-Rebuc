@@ -11,5 +11,7 @@ import Foundation
 @objc protocol Model {
     var id: Int { get set }
     @objc optional var name: String { get set }
-    func getUrl() -> String
+    static func getUrl() -> String
+    static func singularNodeName() -> String
+    static func pluralNodeName() -> String
 }

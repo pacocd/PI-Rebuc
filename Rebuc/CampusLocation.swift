@@ -22,8 +22,16 @@ class CampusLocation: Mappable, Model {
         name    <- map["name"]
     }
 
-    func getUrl() -> String {
+    static func getUrl() -> String {
         return URLManager.shared.getURL(from: .campusLocation)
+    }
+
+    static func singularNodeName() -> String {
+        return "campus_location"
+    }
+
+    static func pluralNodeName() -> String {
+        return "campus_locations"
     }
 
 }

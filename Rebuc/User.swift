@@ -32,8 +32,16 @@ class User: Mappable, Model {
         userRole            <- map["user_role"]
     }
 
-    func getUrl() -> String {
+    static func getUrl() -> String {
         return ""
+    }
+
+    static func singularNodeName() -> String {
+        return "user"
+    }
+
+    static func pluralNodeName() -> String {
+        return "users"
     }
 
 }
