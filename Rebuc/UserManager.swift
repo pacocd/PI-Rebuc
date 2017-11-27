@@ -30,6 +30,14 @@ struct UserManager {
         defaults.synchronize()
     }
 
+    func isUserLogged() -> Bool {
+        if let _ = UserDefaults.standard.object(forKey: "user-token-auth") {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func getHeadersForAuthentication() -> HTTPHeaders {
         let defaults: UserDefaults = UserDefaults.standard
 
