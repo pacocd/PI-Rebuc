@@ -14,7 +14,7 @@ class Ticket: Mappable, Model {
     var id: Int = 0
     var description: String!
     var state: TicketState!
-    var responsable: User!
+    var responsable: User?
     var createdAt: Date!
     var endedAt: Date?
     var user: User!

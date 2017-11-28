@@ -13,6 +13,7 @@ class TicketsListViewController: BaseViewController {
     var tickets: [Ticket] = []
     @IBOutlet weak var createTicketsButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -93,6 +94,13 @@ extension TicketsListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController: TicketDetailsViewController = instantiate(viewController: "TicketDetailsViewController", storyboard: "Tickets") as! TicketDetailsViewController
+        viewController.ticket = tickets[indexPath.row]
+        let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+        present(navigationController, animated: true, completion: nil)
     }
 
 }

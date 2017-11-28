@@ -42,8 +42,8 @@ class BaseViewController: UIViewController {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: .userDidSet, object: nil)
 
-        let tapGestureForDismissKeyboard: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         if !self.isKind(of: TicketsListViewController.self) {
+            let tapGestureForDismissKeyboard: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
             view.addGestureRecognizer(tapGestureForDismissKeyboard)
         }
         // Do any additional setup after loading the view.
