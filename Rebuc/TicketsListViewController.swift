@@ -66,6 +66,7 @@ extension TicketsListViewController: UITableViewDataSource {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "ticketCell", for: indexPath)
         cell.textLabel?.text = "Estado: \(tickets[indexPath.row].state.name)"
         cell.detailTextLabel?.text = tickets[indexPath.row].description
+        cell.imageView?.image = UIImage(named: "ticket-icon")
         return cell
     }
 
