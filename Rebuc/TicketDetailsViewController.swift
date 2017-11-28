@@ -17,8 +17,11 @@ class TicketDetailsViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextView: UITextField!
     @IBOutlet weak var assignResponsableButton: UIButton!
+    var responsablePickerView: UIPickerView = UIPickerView()
 
     var ticket: Ticket?
+    var responsable: Responsable?
+    var responsables: [Responsable] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +31,25 @@ class TicketDetailsViewController: BaseViewController {
             responsableTextView.isUserInteractionEnabled = false
         } else {
             responsableTextView.isUserInteractionEnabled = true
+            responsableTextView.inputView = responsablePickerView
+            responsablePickerView.delegate = self
+            responsablePickerView.dataSource = self
+            APIManager.shared.getObjects(of: Responsable.self, success: { (responsables) in
+                self.responsables = responsables.flatMap({ (responsable) -> Responsable? in
+                    if responsable.dependenceId == UserManager.shared.user?.dependenceId {
+                        return responsable
+                    } else if responsable.userRole.id == 1 {
+                        return responsable
+                    } else {
+                        return nil
+                    }
+                })
+                self.responsablePickerView.reloadAllComponents()
+            }, failure: { (error) in
+                self.showBasicAlert(with: error.localizedDescription)
+            })
         }
+
         if let ticket = ticket {
             updateUI(using: ticket)
         }
@@ -49,10 +70,11 @@ class TicketDetailsViewController: BaseViewController {
             }
             self.ticketNumberLabel.text = "Ticket número \(ticket.id)"
             self.descriptionLabel.text = """
-                Descripción:
+            Descripción:
                 \(ticket.description ?? "")
             """
             if let responsable = ticket.responsable {
+                self.responsable = responsable
                 self.responsableTextView.text = "\(responsable.name) \(responsable.fatherLastName ?? "") \(responsable.motherLastName ?? "")"
             }
         }
@@ -70,6 +92,31 @@ class TicketDetailsViewController: BaseViewController {
     }
 
     @IBAction func showOptionsMenu(_ sender: Any) {
+    }
+
+}
+
+extension TicketDetailsViewController: UIPickerViewDelegate {
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        responsable = responsables[row]
+        responsableTextView.text = "\(responsables[row].name) \(responsables[row].fatherLastName ?? "") \(responsables[row].motherLastName ?? "")"
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(responsables[row].name) \(responsables[row].fatherLastName ?? "") \(responsables[row].motherLastName ?? "")"
+    }
+
+}
+
+extension TicketDetailsViewController: UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return responsables.count
     }
 
 }

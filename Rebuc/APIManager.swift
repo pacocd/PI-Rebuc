@@ -211,6 +211,7 @@ extension APIManager {
             }
         }
     }
+
     func postObject<T>(using type: T.Type, sending parameters: Parameters, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Model, T: Mappable {
         let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
         let url: String = T.getUrl()
