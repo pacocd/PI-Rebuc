@@ -57,7 +57,7 @@ struct APIManager {
             "email": email,
             "password": password,
             "password_confirmation": passwordConfirmation,
-            "user_role_id": 4,
+            "user_role_id": 3,
             "father_last_name": fatherLastName,
             "mother_last_name": motherLastName ?? "",
             "dependence_id": dependenceId,
