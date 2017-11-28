@@ -29,7 +29,7 @@ struct UserManager {
         defaults.synchronize()
     }
 
-    func getRemoveSessionFromDefaults() {
+    func removeSessionFromDefaults() {
         let defaults: UserDefaults = UserDefaults.standard
         defaults.removeObject(forKey: "user-token-auth")
         defaults.removeObject(forKey: "user-client-auth")

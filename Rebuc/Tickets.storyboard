@@ -73,6 +73,7 @@
                         <viewLayoutGuide key="safeArea" id="LMH-mw-2nK"/>
                     </view>
                     <connections>
+                        <outlet property="createTicketsButton" destination="R3e-ek-woR" id="8RM-Ew-1d4"/>
                         <outlet property="tableView" destination="Gov-kP-M3f" id="SBQ-V1-wle"/>
                     </connections>
                 </viewController>

@@ -11,6 +11,7 @@ import UIKit
 class TicketsListViewController: BaseViewController {
 
     var tickets: [Ticket] = []
+    @IBOutlet weak var createTicketsButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,10 @@ class TicketsListViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if UserManager.shared.user?.userRole.id != 3 {
+            createTicketsButton.isEnabled = false
+            createTicketsButton.setTitleColor(UIColor.grayTableViewSeparator, for: .normal)
+        }
         APIManager.shared.getObjectsWithToken(of: Ticket.self) { (ticketsRequest) in
             if UserManager.shared.user?.userRole.id == 2 {
                 let ticketsFiltered = ticketsRequest.flatMap({ (ticket) -> Ticket? in

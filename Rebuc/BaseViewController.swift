@@ -76,7 +76,7 @@ class BaseViewController: UIViewController {
 
     @objc func logout() {
         UserManager.shared.user = nil
-        UserManager.shared.getRemoveSessionFromDefaults()
+        UserManager.shared.removeSessionFromDefaults()
         let viewController: UIViewController = instantiate(viewController: "LoginViewController", storyboard: "Authentication")
         let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true, completion: nil)
