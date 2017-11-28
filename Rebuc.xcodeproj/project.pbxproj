@@ -26,6 +26,7 @@
 		AC6CE1DB1FCBDB2E008CC8AD /* Dependence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1DA1FCBDB2E008CC8AD /* Dependence.swift */; };
 		AC6CE1DD1FCBDEC5008CC8AD /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1DC1FCBDEC5008CC8AD /* APIError.swift */; };
 		AC915D921FC87B9E00699802 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC915D911FC87B9E00699802 /* Authentication.storyboard */; };
+		ACC36BBB1FCE07E70016C1D6 /* TicketDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC36BBA1FCE07E70016C1D6 /* TicketDetailsViewController.swift */; };
 		ACE67D5E1FC8907100371008 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE67D5D1FC8907100371008 /* LoginViewController.swift */; };
 		ACE67D601FC891E700371008 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE67D5F1FC891E700371008 /* SignUpViewController.swift */; };
 		ACE67D631FC8930500371008 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE67D621FC8930500371008 /* URLManager.swift */; };
@@ -81,6 +82,7 @@
 		AC6CE1DA1FCBDB2E008CC8AD /* Dependence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependence.swift; sourceTree = "<group>"; };
 		AC6CE1DC1FCBDEC5008CC8AD /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		AC915D911FC87B9E00699802 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		ACC36BBA1FCE07E70016C1D6 /* TicketDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailsViewController.swift; sourceTree = "<group>"; };
 		ACE67D5D1FC8907100371008 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ACE67D5F1FC891E700371008 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACE67D621FC8930500371008 /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				AC0CA57E1FCC91EF00F8E333 /* BaseViewController.swift */,
 				AC0CA5801FCCA37F00F8E333 /* TicketsListViewController.swift */,
 				AC0CA5891FCCF36400F8E333 /* NewTicketViewController.swift */,
+				ACC36BBA1FCE07E70016C1D6 /* TicketDetailsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACC36BBB1FCE07E70016C1D6 /* TicketDetailsViewController.swift in Sources */,
 				AC0CA58A1FCCF36400F8E333 /* NewTicketViewController.swift in Sources */,
 				AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */,
 				AC0CA5831FCCCFFA00F8E333 /* TicketState.swift in Sources */,
