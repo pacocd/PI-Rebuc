@@ -16,9 +16,16 @@ struct UserManager {
 
     func saveOnDefaults(token value: [String: Any]) {
         let defaults: UserDefaults = UserDefaults.standard
-        defaults.set(value["Access-Token"] as! String, forKey: "user-token-auth")
-        defaults.set(value["Client"] as! String, forKey: "user-client-auth")
-        defaults.set(value["Uid"] as! String, forKey: "user-uid-auth")
+        if let accessToken = value["Access-Token"] as? String{
+            if let client = value["Client"] as? String {
+                if let uid = value["Uid"] as? String {
+                    defaults.set(accessToken, forKey: "user-token-auth")
+                    defaults.set(client, forKey: "user-client-auth")
+                    defaults.set(uid, forKey: "user-uid-auth")
+                }
+            }
+        }
+
         defaults.synchronize()
     }
 
