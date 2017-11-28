@@ -10,6 +10,15 @@ import UIKit
 
 class TicketDetailsViewController: UIViewController {
 
+    @IBOutlet weak var ticketStateImageView: UIImageView!
+    @IBOutlet weak var ticketNumberLabel: UILabel!
+    @IBOutlet weak var responsableTextView: UITextField!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var messageTextView: UITextField!
+    @IBOutlet weak var assignResponsableButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,15 +30,11 @@ class TicketDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func assignResponsable(_ sender: Any) {
     }
-    */
+
+    
+    @IBAction func sendMessage(_ sender: Any) {
+    }
 
 }
