@@ -27,6 +27,8 @@ class TicketsListViewController: BaseViewController {
     }
 
     @IBAction func createTicket(_ sender: Any) {
+        let viewController: UIViewController = instantiate(viewController: "NewTicketViewController", storyboard: "Tickets")
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

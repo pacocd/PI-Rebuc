@@ -87,6 +87,9 @@ class BaseViewController: UIViewController {
     }
 
     func isModal() -> Bool {
+        if let index = navigationController?.viewControllers.index(of: self), index > 0 {
+            return false
+        }
         if isBeingPresented {
             return true
         }

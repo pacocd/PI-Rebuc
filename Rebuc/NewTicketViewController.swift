@@ -10,15 +10,34 @@ import UIKit
 
 class NewTicketViewController: BaseViewController {
 
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var responsableTextField: UITextField!
+    var responsables: [Responsable] = []
+    var responsablesPickerView: UIPickerView = UIPickerView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        APIManager.shared.getObjects(of: Responsable.self, success: { (responsables) in
+            self.responsables = responsables.flatMap({ (responsable) in
+                if responsable.dependence.id == UserManager.shared.user?.dependence.id {
+                    return responsable
+                } else {
+                    return nil
+                }
+            })
+        }) { (error) in
+            self.showBasicAlert(with: error.localizedDescription)
+        }
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    @IBAction func createTicket(_ sender: Any) {
     }
 
 }
