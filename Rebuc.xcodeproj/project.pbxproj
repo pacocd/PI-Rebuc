@@ -13,6 +13,9 @@
 		AC0CA57D1FCC909900F8E333 /* Tickets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0CA57C1FCC909900F8E333 /* Tickets.storyboard */; };
 		AC0CA57F1FCC91EF00F8E333 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA57E1FCC91EF00F8E333 /* BaseViewController.swift */; };
 		AC0CA5811FCCA37F00F8E333 /* TicketsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA5801FCCA37F00F8E333 /* TicketsListViewController.swift */; };
+		AC0CA5831FCCCFFA00F8E333 /* TicketState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA5821FCCCFFA00F8E333 /* TicketState.swift */; };
+		AC0CA5851FCCD0ED00F8E333 /* MovementTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA5841FCCD0ED00F8E333 /* MovementTag.swift */; };
+		AC0CA5871FCCD3FA00F8E333 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA5861FCCD3FA00F8E333 /* Ticket.swift */; };
 		AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */; };
 		AC6CE1D21FCBD5FD008CC8AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D11FCBD5FD008CC8AD /* User.swift */; };
 		AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */; };
@@ -63,6 +66,9 @@
 		AC0CA57C1FCC909900F8E333 /* Tickets.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tickets.storyboard; sourceTree = "<group>"; };
 		AC0CA57E1FCC91EF00F8E333 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AC0CA5801FCCA37F00F8E333 /* TicketsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsListViewController.swift; sourceTree = "<group>"; };
+		AC0CA5821FCCCFFA00F8E333 /* TicketState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketState.swift; sourceTree = "<group>"; };
+		AC0CA5841FCCD0ED00F8E333 /* MovementTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTag.swift; sourceTree = "<group>"; };
+		AC0CA5861FCCD3FA00F8E333 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
 		AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AC6CE1D11FCBD5FD008CC8AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
@@ -147,6 +153,9 @@
 				AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */,
 				AC6CE1D81FCBDA1F008CC8AD /* CampusLocation.swift */,
 				AC6CE1DA1FCBDB2E008CC8AD /* Dependence.swift */,
+				AC0CA5821FCCCFFA00F8E333 /* TicketState.swift */,
+				AC0CA5841FCCD0ED00F8E333 /* MovementTag.swift */,
+				AC0CA5861FCCD3FA00F8E333 /* Ticket.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -568,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */,
+				AC0CA5831FCCCFFA00F8E333 /* TicketState.swift in Sources */,
 				ACE67D661FC89F1900371008 /* Extensions.swift in Sources */,
 				AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */,
 				AC0CA57B1FCC8D8600F8E333 /* UserManager.swift in Sources */,
@@ -578,6 +588,8 @@
 				AC0CA5811FCCA37F00F8E333 /* TicketsListViewController.swift in Sources */,
 				AC6CE1DB1FCBDB2E008CC8AD /* Dependence.swift in Sources */,
 				AC6CE1D91FCBDA1F008CC8AD /* CampusLocation.swift in Sources */,
+				AC0CA5851FCCD0ED00F8E333 /* MovementTag.swift in Sources */,
+				AC0CA5871FCCD3FA00F8E333 /* Ticket.swift in Sources */,
 				ACE67D631FC8930500371008 /* URLManager.swift in Sources */,
 				ACE67D5E1FC8907100371008 /* LoginViewController.swift in Sources */,
 				ACF5097D1F683D5200A9548C /* AppDelegate.swift in Sources */,
