@@ -41,6 +41,9 @@ class BaseViewController: UIViewController {
             navigationItem.rightBarButtonItem = profileButton
         }
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: .userDidSet, object: nil)
+
+        let tapGestureForDismissKeyboard: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGestureForDismissKeyboard)
         // Do any additional setup after loading the view.
     }
 
@@ -101,6 +104,10 @@ class BaseViewController: UIViewController {
 
     @objc func dismissViewController() {
         dismiss(animated: true, completion: nil)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
 }
