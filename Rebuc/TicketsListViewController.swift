@@ -16,7 +16,22 @@ class TicketsListViewController: BaseViewController {
         super.viewDidLoad()
 
         APIManager.shared.getObjectsWithToken(of: Ticket.self) { (ticketsRequest) in
-            self.tickets = ticketsRequest
+            if UserManager.shared.user?.userRole.id == 2 {
+                let ticketsFiltered = ticketsRequest.flatMap({ (ticket) -> Ticket? in
+                    if let user = UserManager.shared.user {
+                        if user.dependenceId == ticket.user.dependenceId {
+                            return ticket
+                        } else {
+                            return nil
+                        }
+                    } else {
+                        return nil
+                    }
+                })
+                self.tickets = ticketsFiltered
+            } else {
+                self.tickets = ticketsRequest
+            }
             self.tableView.reloadData()
         }
         navigationItem.leftBarButtonItem = nil

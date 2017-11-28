@@ -16,6 +16,7 @@ class Responsable: Mappable, Model {
     var fatherLastName: String?
     var motherLastName: String?
     var email: String!
+    var dependenceId: Int!
     var dependence: Dependence!
     var userRole: UserRole!
 
@@ -28,6 +29,7 @@ class Responsable: Mappable, Model {
         fatherLastName      <- map["father_last_name"]
         motherLastName      <- map["mother_last_name"]
         email               <- map["uid"]
+        dependenceId        <- map["dependence_id"]
         dependence          <- map["dependence"]
         userRole            <- map["user_role"]
     }
