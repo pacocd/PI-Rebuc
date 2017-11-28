@@ -17,6 +17,7 @@
 		AC0CA5851FCCD0ED00F8E333 /* MovementTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA5841FCCD0ED00F8E333 /* MovementTag.swift */; };
 		AC0CA5871FCCD3FA00F8E333 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA5861FCCD3FA00F8E333 /* Ticket.swift */; };
 		AC0CA58A1FCCF36400F8E333 /* NewTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA5891FCCF36400F8E333 /* NewTicketViewController.swift */; };
+		AC0CA58C1FCCFCD500F8E333 /* Responsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA58B1FCCFCD500F8E333 /* Responsable.swift */; };
 		AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */; };
 		AC6CE1D21FCBD5FD008CC8AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D11FCBD5FD008CC8AD /* User.swift */; };
 		AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */; };
@@ -71,6 +72,7 @@
 		AC0CA5841FCCD0ED00F8E333 /* MovementTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTag.swift; sourceTree = "<group>"; };
 		AC0CA5861FCCD3FA00F8E333 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
 		AC0CA5891FCCF36400F8E333 /* NewTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTicketViewController.swift; sourceTree = "<group>"; };
+		AC0CA58B1FCCFCD500F8E333 /* Responsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responsable.swift; sourceTree = "<group>"; };
 		AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AC6CE1D11FCBD5FD008CC8AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				AC0CA5821FCCCFFA00F8E333 /* TicketState.swift */,
 				AC0CA5841FCCD0ED00F8E333 /* MovementTag.swift */,
 				AC0CA5861FCCD3FA00F8E333 /* Ticket.swift */,
+				AC0CA58B1FCCFCD500F8E333 /* Responsable.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				ACE67D631FC8930500371008 /* URLManager.swift in Sources */,
 				ACE67D5E1FC8907100371008 /* LoginViewController.swift in Sources */,
 				ACF5097D1F683D5200A9548C /* AppDelegate.swift in Sources */,
+				AC0CA58C1FCCFCD500F8E333 /* Responsable.swift in Sources */,
 				AC6CE1D21FCBD5FD008CC8AD /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
