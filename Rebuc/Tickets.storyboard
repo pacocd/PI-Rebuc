@@ -176,14 +176,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hDW-MQ-IuP">
-                                <rect key="frame" x="10" y="627" width="303" height="30"/>
+                                <rect key="frame" x="10" y="583" width="268" height="30"/>
                                 <color key="tintColor" red="0.2225409169" green="0.64776332489999999" blue="0.327020688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UG7-0n-DR9">
-                                <rect key="frame" x="323" y="627" width="42" height="30"/>
+                                <rect key="frame" x="323" y="583" width="42" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="i1w-ZX-FfG"/>
                                 </constraints>
@@ -213,7 +213,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gRr-8P-plq">
-                                <rect key="frame" x="0.0" y="161" width="375" height="456"/>
+                                <rect key="frame" x="0.0" y="161" width="375" height="412"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="JfL-4s-mg1">
@@ -226,6 +226,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6V-Ae-9Ns">
+                                <rect key="frame" x="283" y="583" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="eVW-NP-Uaa"/>
+                                    <constraint firstAttribute="width" constant="30" id="vjY-Hn-2vr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.2225409169" green="0.64776332489999999" blue="0.327020688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showOptionsMenu:" destination="8WP-Jb-TGn" eventType="touchUpInside" id="pCQ-1h-zjd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -237,6 +251,7 @@
                             <constraint firstItem="qHo-pU-TUd" firstAttribute="trailing" secondItem="qNM-K4-BDl" secondAttribute="trailing" constant="10" id="CXW-Dl-b6H"/>
                             <constraint firstItem="qHo-pU-TUd" firstAttribute="bottom" secondItem="UG7-0n-DR9" secondAttribute="bottom" constant="10" id="EjT-pZ-Vnp"/>
                             <constraint firstItem="qHo-pU-TUd" firstAttribute="trailing" secondItem="UG7-0n-DR9" secondAttribute="trailing" constant="10" id="FjR-2b-Tg2"/>
+                            <constraint firstItem="P6V-Ae-9Ns" firstAttribute="centerY" secondItem="hDW-MQ-IuP" secondAttribute="centerY" id="GI1-3L-JzC"/>
                             <constraint firstItem="hDW-MQ-IuP" firstAttribute="leading" secondItem="qHo-pU-TUd" secondAttribute="leading" constant="10" id="HuG-TO-ItJ"/>
                             <constraint firstItem="zG5-bA-IuZ" firstAttribute="top" secondItem="ZSR-U2-piL" secondAttribute="bottom" constant="8" id="Iya-SU-BhQ"/>
                             <constraint firstItem="S9x-qa-aoT" firstAttribute="leading" secondItem="fR3-yn-7uf" secondAttribute="trailing" constant="5" id="K7V-Z3-fHA"/>
@@ -244,11 +259,12 @@
                             <constraint firstItem="avv-MW-dxG" firstAttribute="leading" secondItem="zG5-bA-IuZ" secondAttribute="leading" id="Msh-JX-FHq"/>
                             <constraint firstItem="qNM-K4-BDl" firstAttribute="centerY" secondItem="ZSR-U2-piL" secondAttribute="centerY" id="Q9S-wD-6QX"/>
                             <constraint firstItem="qHo-pU-TUd" firstAttribute="bottom" secondItem="hDW-MQ-IuP" secondAttribute="bottom" constant="10" id="Tgj-Iw-mmS"/>
+                            <constraint firstItem="P6V-Ae-9Ns" firstAttribute="leading" secondItem="hDW-MQ-IuP" secondAttribute="trailing" constant="5" id="WBZ-5G-5et"/>
                             <constraint firstItem="gRr-8P-plq" firstAttribute="top" secondItem="avv-MW-dxG" secondAttribute="bottom" constant="20" id="aQU-Mw-suk"/>
                             <constraint firstItem="fR3-yn-7uf" firstAttribute="centerY" secondItem="zG5-bA-IuZ" secondAttribute="centerY" id="g6f-cd-ef4"/>
                             <constraint firstItem="ZSR-U2-piL" firstAttribute="leading" secondItem="qHo-pU-TUd" secondAttribute="leading" constant="15" id="i8k-IV-Zb7"/>
-                            <constraint firstItem="UG7-0n-DR9" firstAttribute="leading" secondItem="hDW-MQ-IuP" secondAttribute="trailing" constant="10" id="iic-13-gcv"/>
                             <constraint firstItem="S9x-qa-aoT" firstAttribute="centerY" secondItem="zG5-bA-IuZ" secondAttribute="centerY" id="j4I-Fg-0Hr"/>
+                            <constraint firstItem="UG7-0n-DR9" firstAttribute="leading" secondItem="P6V-Ae-9Ns" secondAttribute="trailing" constant="10" id="pxl-r7-OYJ"/>
                             <constraint firstItem="S9x-qa-aoT" firstAttribute="trailing" secondItem="qNM-K4-BDl" secondAttribute="trailing" id="rzR-kS-sO8"/>
                             <constraint firstItem="ZSR-U2-piL" firstAttribute="top" secondItem="qHo-pU-TUd" secondAttribute="top" constant="10" id="ugK-Rg-a33"/>
                             <constraint firstItem="gRr-8P-plq" firstAttribute="leading" secondItem="qHo-pU-TUd" secondAttribute="leading" id="uy5-Yu-Rfi"/>
@@ -256,6 +272,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qHo-pU-TUd"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="assignResponsableButton" destination="S9x-qa-aoT" id="cKY-dp-w4N"/>
                         <outlet property="descriptionLabel" destination="avv-MW-dxG" id="tZZ-Bh-0No"/>

@@ -23,6 +23,12 @@ class TicketDetailsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "Detalles de Ticket"
+        if UserManager.shared.user?.userRole.id == 3 {
+            responsableTextView.isUserInteractionEnabled = false
+        } else {
+            responsableTextView.isUserInteractionEnabled = true
+        }
         if let ticket = ticket {
             updateUI(using: ticket)
         }
@@ -44,7 +50,7 @@ class TicketDetailsViewController: BaseViewController {
             self.ticketNumberLabel.text = "Ticket número \(ticket.id)"
             self.descriptionLabel.text = """
                 Descripción:
-                \(ticket.description)
+                \(ticket.description ?? "")
             """
             if let responsable = ticket.responsable {
                 self.responsableTextView.text = "\(responsable.name) \(responsable.fatherLastName ?? "") \(responsable.motherLastName ?? "")"
@@ -61,6 +67,9 @@ class TicketDetailsViewController: BaseViewController {
 
     
     @IBAction func sendMessage(_ sender: Any) {
+    }
+
+    @IBAction func showOptionsMenu(_ sender: Any) {
     }
 
 }

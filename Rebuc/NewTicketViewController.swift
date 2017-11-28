@@ -15,6 +15,7 @@ class NewTicketViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "Nuevo Ticket"
         // Do any additional setup after loading the view.
     }
 
