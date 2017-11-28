@@ -15,6 +15,15 @@ class TicketsListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.title = "Tickets"
+        tableView.delegate = self
+        tableView.dataSource = self
+        // Do any additional setup after loading the view.
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         APIManager.shared.getObjectsWithToken(of: Ticket.self) { (ticketsRequest) in
             if UserManager.shared.user?.userRole.id == 2 {
                 let ticketsFiltered = ticketsRequest.flatMap({ (ticket) -> Ticket? in
@@ -34,16 +43,12 @@ class TicketsListViewController: BaseViewController {
             }
             self.tableView.reloadData()
         }
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.title = "Tickets"
-        tableView.delegate = self
-        tableView.dataSource = self
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func createTicket(_ sender: Any) {
         let viewController: UIViewController = instantiate(viewController: "NewTicketViewController", storyboard: "Tickets")
-        navigationController?.pushViewController(viewController, animated: true)
+        let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+        present(navigationController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

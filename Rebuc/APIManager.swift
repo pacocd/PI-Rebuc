@@ -88,6 +88,51 @@ struct APIManager {
         }
     }
 
+    func getUser(success: @escaping(User, [String: Any]) -> Void) {
+
+        let url: String = User.getUrl()
+        let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
+
+        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let json = response.value as? [String: Any] {
+                    if let userJson = json[User.singularNodeName()] as? [String: Any] {
+                        if let user = Mapper<User>().map(JSON: userJson) {
+                            success(user, response.response?.allHeaderFields as! [String: Any])
+                        }
+                    }
+                }
+            case .failure(let error):
+                UIViewController().showBasicAlert(with: error.localizedDescription)
+            }
+        }
+    }
+
+}
+
+// Tickets
+extension APIManager {
+
+    func generateTicket(sending description: String, success: @escaping(Ticket) -> Void, failure: @escaping(Error) -> Void) {
+        let parameters: Parameters = [
+            "user_id": UserManager.shared.user?.id ?? 0,
+            "description": description,
+            "ticket_state_id": 1
+        ]
+
+        postObject(using: Ticket.self, sending: parameters, success: { (ticket) in
+            success(ticket)
+        }) { (error) in
+            failure(error)
+        }
+    }
+
+}
+
+// Generic functions
+extension APIManager {
+
     func getObject<T>(of type: T.Type, using id: Int, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Mappable, T: Model {
 
         let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
@@ -166,27 +211,41 @@ struct APIManager {
             }
         }
     }
-
-    func getUser(success: @escaping(User, [String: Any]) -> Void) {
-
-        let url: String = User.getUrl()
+    func postObject<T>(using type: T.Type, sending parameters: Parameters, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Model, T: Mappable {
         let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
+        let url: String = T.getUrl()
 
-        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+        request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             switch response.result {
             case .success:
                 if let json = response.value as? [String: Any] {
-                    if let userJson = json[User.singularNodeName()] as? [String: Any] {
-                        if let user = Mapper<User>().map(JSON: userJson) {
-                            success(user, response.response?.allHeaderFields as! [String: Any])
+                    if let error = self.parseErrorFromResponse(findingIn: json) {
+                        failure(error)
+                    } else if let objectJSON = json[T.singularNodeName()] as? [String: Any] {
+                        if let object = Mapper<T>().map(JSON: objectJSON) {
+                            UserManager.shared.saveOnDefaults(token: response.response?.allHeaderFields as! [String: Any])
+                            success(object)
+                        } else {
+                            failure(APIError())
                         }
+                    } else {
+                        failure(APIError())
                     }
+                } else {
+                    failure(APIError())
                 }
+
             case .failure(let error):
-                UIViewController().showBasicAlert(with: error.localizedDescription)
+                failure(error)
             }
         }
     }
+
+}
+
+// Error parser
+extension APIManager {
+
     fileprivate func parseErrorFromResponse(findingIn json: [String: Any]) -> APIError? {
         var errorMessage: String?
         var errorMessages: [String]?

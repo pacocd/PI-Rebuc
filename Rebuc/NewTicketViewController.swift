@@ -24,6 +24,14 @@ class NewTicketViewController: BaseViewController {
     }
 
     @IBAction func createTicket(_ sender: Any) {
+        guard let description = descriptionTextView.text else { return }
+        guard !description.isEmpty else { showBasicAlert(with: "La descripción es obligatoria"); return }
+
+        APIManager.shared.generateTicket(sending: description, success: { (ticket) in
+            self.dismissViewController()
+        }) { (error) in
+            self.showBasicAlert(with: error.localizedDescription)
+        }
     }
 
 }
