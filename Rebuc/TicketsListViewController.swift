@@ -20,15 +20,13 @@ class TicketsListViewController: BaseViewController {
         navigationItem.title = "Tickets"
         tableView.delegate = self
         tableView.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: .userDidSet, object: nil)
         // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if UserManager.shared.user?.userRole.id != 3 {
-            createTicketsButton.isEnabled = false
-            createTicketsButton.setTitleColor(UIColor.grayTableViewSeparator, for: .normal)
-        }
+
         APIManager.shared.getObjectsWithToken(of: Ticket.self) { (ticketsRequest) in
             if UserManager.shared.user?.userRole.id == 2 {
                 let ticketsFiltered = ticketsRequest.flatMap({ (ticket) -> Ticket? in
@@ -61,6 +59,18 @@ class TicketsListViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func updateUI() {
+        super.updateUI()
+        DispatchQueue.main.async {
+            if UserManager.shared.user?.userRole.id != 3 {
+                self.createTicketsButton.isEnabled = false
+                self.createTicketsButton.setTitleColor(UIColor.grayTableViewSeparator, for: .normal)
+            } else {
+                self.createTicketsButton.isEnabled = true
+                self.createTicketsButton.setTitleColor(UIColor.greenUcolTab, for: .normal)
+            }
+        }
+    }
 }
 
 extension TicketsListViewController: UITableViewDelegate {

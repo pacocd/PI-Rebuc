@@ -19,9 +19,11 @@ struct UserManager {
         if let accessToken = value["Access-Token"] as? String{
             if let client = value["Client"] as? String {
                 if let uid = value["Uid"] as? String {
-                    defaults.set(accessToken, forKey: "user-token-auth")
-                    defaults.set(client, forKey: "user-client-auth")
-                    defaults.set(uid, forKey: "user-uid-auth")
+                    DispatchQueue.main.async {
+                        defaults.set(accessToken, forKey: "user-token-auth")
+                        defaults.set(client, forKey: "user-client-auth")
+                        defaults.set(uid, forKey: "user-uid-auth")
+                    }
                 }
             }
         }
