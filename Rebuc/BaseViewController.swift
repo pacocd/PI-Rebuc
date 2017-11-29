@@ -22,12 +22,6 @@ class BaseViewController: UIViewController {
     }()
     lazy var userActionSheet: UIAlertController = {
         let alertController: UIAlertController = UIAlertController(title: "Menú", message: nil, preferredStyle: .actionSheet)
-        let alertActionSignOut: UIAlertAction = UIAlertAction(title: "Cerrar Sesión", style: .destructive, handler: { (_) in
-            self.logout()
-        })
-        let alertActionCancel: UIAlertAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-        alertController.addAction(alertActionSignOut)
-        alertController.addAction(alertActionCancel)
         return alertController
     }()
 
@@ -42,7 +36,7 @@ class BaseViewController: UIViewController {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: .userDidSet, object: nil)
 
-        if !self.isKind(of: TicketsListViewController.self) {
+        if !self.isKind(of: TicketsListViewController.self) && !self.isKind(of: UsersListViewController.self) {
             let tapGestureForDismissKeyboard: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
             view.addGestureRecognizer(tapGestureForDismissKeyboard)
         }
@@ -70,6 +64,22 @@ class BaseViewController: UIViewController {
         if let user = UserManager.shared.user {
             DispatchQueue.main.async {
                 self.userActionSheet.message = "\(user.name) \(user.fatherLastName ?? "") \(user.motherLastName ?? "")"
+                if self.userActionSheet.actions.count == 0 {
+                    if UserManager.shared.user?.userRole.id == 1 {
+                        let alertActionUsersList: UIAlertAction = UIAlertAction(title: "Lista de Usuarios", style: UIAlertActionStyle.default, handler: { (_) in
+                            let viewController: UIViewController = self.instantiate(viewController: "UsersListViewController", storyboard: "Users")
+                            let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+                            self.present(navigationController, animated: true, completion: nil)
+                        })
+                        self.userActionSheet.addAction(alertActionUsersList)
+                    }
+                    let alertActionSignOut: UIAlertAction = UIAlertAction(title: "Cerrar Sesión", style: .destructive, handler: { (_) in
+                        self.logout()
+                    })
+                    let alertActionCancel: UIAlertAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+                    self.userActionSheet.addAction(alertActionSignOut)
+                    self.userActionSheet.addAction(alertActionCancel)
+                }
             }
         } else {
             DispatchQueue.main.async {

@@ -20,6 +20,9 @@
 		AC0CA58C1FCCFCD500F8E333 /* Responsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CA58B1FCCFCD500F8E333 /* Responsable.swift */; };
 		AC35AF941FCE6B3500930CC0 /* TicketMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35AF931FCE6B3500930CC0 /* TicketMovement.swift */; };
 		AC35AF971FCE6CD400930CC0 /* TicketMovementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35AF961FCE6CD400930CC0 /* TicketMovementCell.swift */; };
+		AC35AF991FCE9EEF00930CC0 /* Users.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC35AF981FCE9EEF00930CC0 /* Users.storyboard */; };
+		AC35AF9B1FCE9F2000930CC0 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35AF9A1FCE9F2000930CC0 /* UsersListViewController.swift */; };
+		AC35AF9D1FCEA32C00930CC0 /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35AF9C1FCEA32C00930CC0 /* Admin.swift */; };
 		AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */; };
 		AC6CE1D21FCBD5FD008CC8AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D11FCBD5FD008CC8AD /* User.swift */; };
 		AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */; };
@@ -78,6 +81,9 @@
 		AC0CA58B1FCCFCD500F8E333 /* Responsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responsable.swift; sourceTree = "<group>"; };
 		AC35AF931FCE6B3500930CC0 /* TicketMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketMovement.swift; sourceTree = "<group>"; };
 		AC35AF961FCE6CD400930CC0 /* TicketMovementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketMovementCell.swift; sourceTree = "<group>"; };
+		AC35AF981FCE9EEF00930CC0 /* Users.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Users.storyboard; sourceTree = "<group>"; };
+		AC35AF9A1FCE9F2000930CC0 /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
+		AC35AF9C1FCEA32C00930CC0 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		AC6CE1CE1FCBD20B008CC8AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AC6CE1D11FCBD5FD008CC8AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC6CE1D31FCBD7BD008CC8AD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 				AC0CA5861FCCD3FA00F8E333 /* Ticket.swift */,
 				AC0CA58B1FCCFCD500F8E333 /* Responsable.swift */,
 				AC35AF931FCE6B3500930CC0 /* TicketMovement.swift */,
+				AC35AF9C1FCEA32C00930CC0 /* Admin.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -204,6 +211,7 @@
 				ACF509851F683D5200A9548C /* LaunchScreen.storyboard */,
 				AC915D911FC87B9E00699802 /* Authentication.storyboard */,
 				AC0CA57C1FCC909900F8E333 /* Tickets.storyboard */,
+				AC35AF981FCE9EEF00930CC0 /* Users.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -217,6 +225,7 @@
 				AC0CA5801FCCA37F00F8E333 /* TicketsListViewController.swift */,
 				AC0CA5891FCCF36400F8E333 /* NewTicketViewController.swift */,
 				ACC36BBA1FCE07E70016C1D6 /* TicketDetailsViewController.swift */,
+				AC35AF9A1FCE9F2000930CC0 /* UsersListViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -418,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC0CA57D1FCC909900F8E333 /* Tickets.storyboard in Resources */,
+				AC35AF991FCE9EEF00930CC0 /* Users.storyboard in Resources */,
 				AC915D921FC87B9E00699802 /* Authentication.storyboard in Resources */,
 				ACF509871F683D5200A9548C /* LaunchScreen.storyboard in Resources */,
 				ACF509841F683D5200A9548C /* Assets.xcassets in Resources */,
@@ -604,8 +614,10 @@
 				ACC36BBB1FCE07E70016C1D6 /* TicketDetailsViewController.swift in Sources */,
 				AC0CA58A1FCCF36400F8E333 /* NewTicketViewController.swift in Sources */,
 				AC35AF971FCE6CD400930CC0 /* TicketMovementCell.swift in Sources */,
+				AC35AF9D1FCEA32C00930CC0 /* Admin.swift in Sources */,
 				AC6CE1CF1FCBD20B008CC8AD /* APIManager.swift in Sources */,
 				AC0CA5831FCCCFFA00F8E333 /* TicketState.swift in Sources */,
+				AC35AF9B1FCE9F2000930CC0 /* UsersListViewController.swift in Sources */,
 				ACE67D661FC89F1900371008 /* Extensions.swift in Sources */,
 				AC6CE1D41FCBD7BD008CC8AD /* UserRole.swift in Sources */,
 				AC35AF941FCE6B3500930CC0 /* TicketMovement.swift in Sources */,
