@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         setInitialFlow()
         setAppColors()
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().toolbarTintColor = UIColor.greenUcolTab
         return true
     }
 
@@ -55,7 +58,7 @@ extension AppDelegate {
 
             APIManager.shared.getUser(success: { (user, headers) in
                 UserManager.shared.user = user
-                UserManager.shared.saveOnDefaults(token: headers)
+                UserManager.shared.update(token: headers["Access-Token"] as? String)
                 NotificationCenter.default.post(name: .userDidSet, object: nil)
             })
         } else {

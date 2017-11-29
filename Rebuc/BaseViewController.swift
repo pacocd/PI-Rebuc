@@ -15,13 +15,13 @@ class BaseViewController: UIViewController {
         return button
     }()
     lazy var profileButton: UIBarButtonItem = {
-        let image = UIImage(named: "user-icon")
+        let image = UIImage(named: "mobile-menu-icon")
         let button: UIBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.done, target: self, action: #selector(presentUserProfileOptions))
         button.tintColor = nil
         return button
     }()
     lazy var userActionSheet: UIAlertController = {
-        let alertController: UIAlertController = UIAlertController(title: "Perfil de Usuario", message: nil, preferredStyle: .actionSheet)
+        let alertController: UIAlertController = UIAlertController(title: "Menú", message: nil, preferredStyle: .actionSheet)
         let alertActionSignOut: UIAlertAction = UIAlertAction(title: "Cerrar Sesión", style: .destructive, handler: { (_) in
             self.logout()
         })
@@ -41,6 +41,11 @@ class BaseViewController: UIViewController {
             navigationItem.rightBarButtonItem = profileButton
         }
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: .userDidSet, object: nil)
+
+        if !self.isKind(of: TicketsListViewController.self) {
+            let tapGestureForDismissKeyboard: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+            view.addGestureRecognizer(tapGestureForDismissKeyboard)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -73,7 +78,7 @@ class BaseViewController: UIViewController {
 
     @objc func logout() {
         UserManager.shared.user = nil
-        UserManager.shared.getRemoveSessionFromDefaults()
+        UserManager.shared.removeSessionFromDefaults()
         let viewController: UIViewController = instantiate(viewController: "LoginViewController", storyboard: "Authentication")
         let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true, completion: nil)
@@ -84,6 +89,9 @@ class BaseViewController: UIViewController {
     }
 
     func isModal() -> Bool {
+        if let index = navigationController?.viewControllers.index(of: self), index > 0 {
+            return false
+        }
         if isBeingPresented {
             return true
         }
@@ -101,6 +109,10 @@ class BaseViewController: UIViewController {
 
     @objc func dismissViewController() {
         dismiss(animated: true, completion: nil)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
 }

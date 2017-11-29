@@ -7,6 +7,7 @@ target 'Rebuc' do
 
   # Pods for Rebuc
   pod 'AlamofireObjectMapper', '~> 5.0'
+  pod 'IQKeyboardManagerSwift'
 
   target 'RebucTests' do
     inherit! :search_paths

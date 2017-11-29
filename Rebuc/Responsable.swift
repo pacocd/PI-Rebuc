@@ -1,15 +1,15 @@
 //
-//  User.swift
+//  Responsable.swift
 //  Rebuc
 //
-//  Created by Paco Chacon de Dios on 26/11/17.
+//  Created by Paco Chacon de Dios on 27/11/17.
 //  Copyright © 2017 Paco Chacon de Dios. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-class User: Mappable, Model {
+class Responsable: Mappable, Model {
 
     var id: Int = 0
     var name: String = ""
@@ -35,15 +35,15 @@ class User: Mappable, Model {
     }
 
     static func getUrl() -> String {
-        return URLManager.shared.getURL(from: .userInfo)
+        return URLManager.shared.getURL(from: .responsable)
     }
 
     static func singularNodeName() -> String {
-        return "user"
+        return "responsable"
     }
 
     static func pluralNodeName() -> String {
-        return "users"
+        return "responsables"
     }
 
 }

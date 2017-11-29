@@ -33,6 +33,22 @@ extension UIColor {
         return UIColor(red: 57 / 255, green: 165 / 255, blue: 83 / 255, alpha: 1)
     }
 
+    class var grayTableViewSeparator: UIColor {
+        return UIColor(red: 217 / 255, green: 217 / 255, blue: 217 / 255, alpha: 1)
+    }
+
+    class var graySweet: UIColor {
+        return UIColor(red: 246 / 255, green: 246 / 255, blue: 246 / 255, alpha: 1)
+    }
+
+    class var greenSweet: UIColor {
+        return UIColor(red: 209 / 255, green: 255 / 255, blue: 218 / 255, alpha: 1)
+    }
+
+    class var redSweet: UIColor {
+        return UIColor(red: 255 / 255, green: 226 / 255, blue: 216 / 255, alpha: 1)
+    }
+
 }
 
 extension Notification.Name {
