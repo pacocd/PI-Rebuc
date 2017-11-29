@@ -156,6 +156,20 @@ extension APIManager {
         }
     }
 
+    func createMovement(for ticketId: Int, type tagId: Int, with description: String, success: @escaping() -> Void, failure: @escaping(Error) -> Void) {
+        let parameters: Parameters = [
+            "ticket_id": ticketId,
+            "movement_tag_id": tagId,
+            "description": description
+        ]
+
+        postObject(of: TicketMovement.self, sending: parameters, success: { (_) in
+            success()
+        }) { (error) in
+            failure(error)
+        }
+    }
+
 }
 
 // Generic functions

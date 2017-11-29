@@ -15,13 +15,13 @@ class BaseViewController: UIViewController {
         return button
     }()
     lazy var profileButton: UIBarButtonItem = {
-        let image = UIImage(named: "user-icon")
+        let image = UIImage(named: "mobile-menu-icon")
         let button: UIBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.done, target: self, action: #selector(presentUserProfileOptions))
         button.tintColor = nil
         return button
     }()
     lazy var userActionSheet: UIAlertController = {
-        let alertController: UIAlertController = UIAlertController(title: "Perfil de Usuario", message: nil, preferredStyle: .actionSheet)
+        let alertController: UIAlertController = UIAlertController(title: "Menú", message: nil, preferredStyle: .actionSheet)
         let alertActionSignOut: UIAlertAction = UIAlertAction(title: "Cerrar Sesión", style: .destructive, handler: { (_) in
             self.logout()
         })

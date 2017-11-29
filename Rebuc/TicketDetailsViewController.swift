@@ -27,13 +27,17 @@ class TicketDetailsViewController: BaseViewController {
         let alertController: UIAlertController = UIAlertController(title: "Opciones", message: "Ticket: \(ticket?.id ?? 0)", preferredStyle: .actionSheet)
         let alertActionCloseTicket: UIAlertAction = UIAlertAction(title: "Cerrar Ticket", style: .destructive, handler: { (_) in
             self.ticket?.state.id = 3
-            APIManager.shared.updateTicket(using: self.ticket!, success: { (newTicket) in
-                self.ticket = newTicket
-                self.dismissViewController()
-            }) { (error) in
-                self.showBasicAlert(with: error.localizedDescription)
-            }
-        })
+            APIManager.shared.updateTicket(using: self.ticket!, success: { (_) in
+                let message: String = "Ticket cerrado por \(UserManager.shared.user?.name ?? "") \(UserManager.shared.user?.fatherLastName ?? "") \(UserManager.shared.user?.motherLastName ?? "")"
+                APIManager.shared.createMovement(for: (self.ticket?.id)!, type: 3, with: message, success: {
+                        self.dismissViewController()
+                    }, failure: { (error) in
+                        self.showBasicAlert(with: error.localizedDescription)
+                    })
+                }) { (error) in
+                    self.showBasicAlert(with: error.localizedDescription)
+                }
+            })
         let alertActionCancel: UIAlertAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alertController.addAction(alertActionCloseTicket)
         alertController.addAction(alertActionCancel)
@@ -55,6 +59,14 @@ class TicketDetailsViewController: BaseViewController {
             responsableTextView.backgroundColor = UIColor.grayTableViewSeparator
             assignResponsableButton.isEnabled = false
             assignResponsableButton.setTitleColor(UIColor.grayTableViewSeparator, for: .normal)
+            APIManager.shared.getMovements(for: (ticket?.id)!, success: { (ticketMovementsRequest) in
+                self.ticketMovements = ticketMovementsRequest.sorted(by: { (t1, t2) -> Bool in
+                    return t1.id < t2.id
+                })
+                self.tableView.reloadData()
+            }, failure: { (error) in
+                self.showBasicAlert(with: error.localizedDescription)
+            })
         } else {
             responsableTextView.isUserInteractionEnabled = true
             responsableTextView.inputView = responsablePickerView
@@ -67,8 +79,6 @@ class TicketDetailsViewController: BaseViewController {
                     return t1.id < t2.id
                 })
                 self.tableView.reloadData()
-                let scrollPoint = CGPoint(x: 0, y: self.tableView.contentSize.height - self.tableView.frame.size.height)
-                self.tableView.setContentOffset(scrollPoint, animated: true)
                 APIManager.shared.getObjects(of: Responsable.self, success: { (responsables) in
                     let unorderedResponsables = responsables.flatMap({ (responsable) -> Responsable? in
                         if responsable.dependenceId == self.ticket?.user.dependenceId {
@@ -132,6 +142,11 @@ class TicketDetailsViewController: BaseViewController {
             if let responsable = ticket.responsable {
                 self.responsable = responsable
                 self.responsableTextView.text = "\(responsable.name) \(responsable.fatherLastName ?? "") \(responsable.motherLastName ?? "")"
+                self.sendMessageButton.isEnabled = true
+                self.sendMessageButton.setTitleColor(UIColor.greenUcolTab, for: .normal)
+            } else {
+                self.sendMessageButton.isEnabled = false
+                self.sendMessageButton.setTitleColor(UIColor.grayTableViewSeparator, for: .normal)
             }
         }
     }
@@ -160,6 +175,28 @@ class TicketDetailsViewController: BaseViewController {
 
     
     @IBAction func sendMessage(_ sender: Any) {
+        guard let message = messageTextView.text else { return }
+        guard !message.isEmpty else { showBasicAlert(with: "El mensaje no puede ir vacío"); return }
+        var type: Int
+        if UserManager.shared.user?.userRole.id == 3 {
+            type = 2
+        } else {
+            type = 1
+        }
+
+        APIManager.shared.createMovement(for: (ticket?.id)!, type: type, with: message, success: {
+            self.messageTextView.text = ""
+            APIManager.shared.getMovements(for: (self.ticket?.id)!, success: { (ticketMovements) in
+                self.ticketMovements = ticketMovements.sorted(by: { (t1, t2) -> Bool in
+                    return t1.id < t2.id
+                })
+                self.tableView.reloadData()
+            }, failure: { (error) in
+                self.showBasicAlert(with: error.localizedDescription)
+            })
+        }) { (error) in
+            self.showBasicAlert(with: error.localizedDescription)
+        }
     }
 
     @IBAction func showOptionsMenu(_ sender: Any) {
