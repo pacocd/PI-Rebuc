@@ -21,6 +21,7 @@ class TicketDetailsViewController: BaseViewController {
     @IBOutlet weak var sendMessageButton: UIButton!
     var responsablePickerView: UIPickerView = UIPickerView()
     var ticket: Ticket?
+    var ticketMovements: [TicketMovement] = []
 
     lazy var moreOptionsActionSheet: UIAlertController = {
         let alertController: UIAlertController = UIAlertController(title: "Opciones", message: "Ticket: \(ticket?.id ?? 0)", preferredStyle: .actionSheet)
@@ -45,6 +46,8 @@ class TicketDetailsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delegate = self
+        tableView.dataSource = self
         navigationItem.title = "Detalles de Ticket"
         if UserManager.shared.user?.userRole.id == 3 {
             responsableTextView.isUserInteractionEnabled = false
@@ -93,6 +96,14 @@ class TicketDetailsViewController: BaseViewController {
             updateUI(using: ticket)
         }
 
+        APIManager.shared.getMovements(for: ticket?.id ?? 0, success: { (ticketMovementsRequest) in
+            self.ticketMovements = ticketMovementsRequest.sorted(by: { (t1, t2) -> Bool in
+                return t1.id < t2.id
+            })
+            self.tableView.reloadData()
+        }) { (error) in
+            self.showBasicAlert(with: error.localizedDescription)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -174,6 +185,45 @@ extension TicketDetailsViewController: UIPickerViewDataSource {
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return responsables.count
+    }
+
+}
+
+extension TicketDetailsViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view: UIView = UIView()
+        view.backgroundColor = UIColor.grayTableViewSeparator
+        return view
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view: UIView = UIView()
+        view.backgroundColor = UIColor.grayTableViewSeparator
+        return view
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
+
+}
+
+extension TicketDetailsViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: TicketMovementCell = tableView.dequeueReusableCell(withIdentifier: "TicketMovementCell", for: indexPath) as! TicketMovementCell
+        cell.movement = ticketMovements[indexPath.row]
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ticketMovements.count
     }
 
 }

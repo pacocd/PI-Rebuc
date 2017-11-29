@@ -24,11 +24,27 @@ class TicketMovementCell: UITableViewCell {
     }
 
     func updateUI() {
-
+        guard let movement = movement else { return }
+        switch movement.movementTagId {
+        case 1:
+            movementTagLabel.text = "Respuesta"
+            backgroundColor = UIColor.greenSweet
+        case 2:
+            movementTagLabel.text = "Pregunta"
+            backgroundColor = UIColor.graySweet
+        case 3:
+            movementTagLabel.text = "Cierre"
+            backgroundColor = UIColor.redSweet
+        default:
+            movementTagLabel.text = ""
+        }
+        movementDescriptionLabel.text = movement.description
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         backgroundColor = UIColor.graySweet
+        movementDescriptionLabel.text = ""
+        movementTagLabel.text = ""
     }
 }

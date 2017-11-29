@@ -143,6 +143,19 @@ extension APIManager {
 
 }
 
+// Ticket Movements
+extension APIManager {
+
+    func getMovements(for ticketId: Int, success: @escaping([TicketMovement]) -> Void, failure: @escaping(Error) -> Void) {
+        let url: String = "\(TicketMovement.getUrl())?ticket_id=\(ticketId)"
+
+        getObjectsWithToken(of: TicketMovement.self, usingSpecific: url) { (ticketMovements) in
+            success(ticketMovements)
+        }
+    }
+
+}
+
 // Generic functions
 extension APIManager {
 
@@ -206,6 +219,26 @@ extension APIManager {
 
     func getObjectsWithToken<T>(of type: T.Type, success: @escaping([T]) -> Void) where T: Mappable, T: Model {
         let url: String = T.getUrl()
+        let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
+
+        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let json = response.value as? [String: Any] {
+                    if let objectsArray = json[T.pluralNodeName()] as? [[String: Any]] {
+                        if let objects = Mapper<T>().mapArray(JSONObject: objectsArray) {
+                            UserManager.shared.saveOnDefaults(token: response.response?.allHeaderFields as! [String: Any])
+                            success(objects)
+                        }
+                    }
+                }
+            case .failure(let error):
+                UIViewController().showBasicAlert(with: error.localizedDescription)
+            }
+        }
+    }
+
+    func getObjectsWithToken<T>(of type: T.Type, usingSpecific url: String, success: @escaping([T]) -> Void) where T: Mappable, T: Model {
         let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
 
         request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
