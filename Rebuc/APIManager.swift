@@ -121,7 +121,20 @@ extension APIManager {
             "ticket_state_id": 1
         ]
 
-        postObject(using: Ticket.self, sending: parameters, success: { (ticket) in
+        postObject(of: Ticket.self, sending: parameters, success: { (ticket) in
+            success(ticket)
+        }) { (error) in
+            failure(error)
+        }
+    }
+
+    func updateTicket(using newValues: Ticket, success: @escaping(Ticket) -> Void, failure: @escaping(Error) -> Void) {
+
+        let parameters: Parameters = [
+            "responsable_id": newValues.responsable?.id ?? 0,
+            "ticket_state_id": newValues.state.id
+        ]
+        patchObject(of: Ticket.self, using: parameters, and: newValues.id, success: { (ticket) in
             success(ticket)
         }) { (error) in
             failure(error)
@@ -212,11 +225,42 @@ extension APIManager {
         }
     }
 
-    func postObject<T>(using type: T.Type, sending parameters: Parameters, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Model, T: Mappable {
+    func postObject<T>(of type: T.Type, sending parameters: Parameters, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Model, T: Mappable {
         let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
         let url: String = T.getUrl()
 
         request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let json = response.value as? [String: Any] {
+                    if let error = self.parseErrorFromResponse(findingIn: json) {
+                        failure(error)
+                    } else if let objectJSON = json[T.singularNodeName()] as? [String: Any] {
+                        if let object = Mapper<T>().map(JSON: objectJSON) {
+                            UserManager.shared.saveOnDefaults(token: response.response?.allHeaderFields as! [String: Any])
+                            success(object)
+                        } else {
+                            failure(APIError())
+                        }
+                    } else {
+                        failure(APIError())
+                    }
+                } else {
+                    failure(APIError())
+                }
+
+            case .failure(let error):
+                failure(error)
+            }
+        }
+    }
+
+    func patchObject<T>(of type: T.Type, using parameters: Parameters, and id: Int, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Model, T: Mappable {
+
+        let url: String = "\(T.getUrl())/\(id)"
+        let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
+
+        request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             switch response.result {
             case .success:
                 if let json = response.value as? [String: Any] {

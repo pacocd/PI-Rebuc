@@ -29,11 +29,16 @@ class TicketDetailsViewController: BaseViewController {
         navigationItem.title = "Detalles de Ticket"
         if UserManager.shared.user?.userRole.id == 3 {
             responsableTextView.isUserInteractionEnabled = false
+            responsableTextView.backgroundColor = UIColor.grayTableViewSeparator
+            assignResponsableButton.isEnabled = false
+            assignResponsableButton.setTitleColor(UIColor.grayTableViewSeparator, for: .normal)
         } else {
             responsableTextView.isUserInteractionEnabled = true
             responsableTextView.inputView = responsablePickerView
             responsablePickerView.delegate = self
             responsablePickerView.dataSource = self
+            assignResponsableButton.isEnabled = true
+            assignResponsableButton.setTitleColor(UIColor.greenUcolTab, for: .normal)
             APIManager.shared.getObjects(of: Responsable.self, success: { (responsables) in
                 self.responsables = responsables.flatMap({ (responsable) -> Responsable? in
                     if responsable.dependenceId == UserManager.shared.user?.dependenceId {
@@ -53,6 +58,7 @@ class TicketDetailsViewController: BaseViewController {
         if let ticket = ticket {
             updateUI(using: ticket)
         }
+
         // Do any additional setup after loading the view.
     }
 
@@ -79,12 +85,27 @@ class TicketDetailsViewController: BaseViewController {
             }
         }
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func assignResponsable(_ sender: Any) {
+        if let responsable = responsable {
+            ticket?.responsableId = responsable.id
+            ticket?.state.id = 2
+        } else {
+            ticket?.responsableId = 0
+            ticket?.state.id = 1
+        }
+
+        APIManager.shared.updateTicket(using: ticket!, success: { (newTicket) in
+            self.ticket = newTicket
+            self.updateUI(using: newTicket)
+        }) { (error) in
+            self.showBasicAlert(with: error.localizedDescription)
+        }
     }
 
     

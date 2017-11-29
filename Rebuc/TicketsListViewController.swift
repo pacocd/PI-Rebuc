@@ -41,9 +41,13 @@ class TicketsListViewController: BaseViewController {
                         return nil
                     }
                 })
-                self.tickets = ticketsFiltered
+                self.tickets = ticketsFiltered.sorted(by: { (ticket1, ticket2) -> Bool in
+                    return ticket1.id < ticket2.id
+                })
             } else {
-                self.tickets = ticketsRequest
+                self.tickets = ticketsRequest.sorted(by: { (ticket1, ticket2) -> Bool in
+                    return ticket1.id < ticket2.id
+                })
             }
             self.tableView.reloadData()
         }

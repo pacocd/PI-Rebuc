@@ -18,18 +18,22 @@ class Ticket: Mappable, Model {
     var createdAt: Date!
     var endedAt: Date?
     var user: User!
+    var userId: Int!
+    var responsableId: Int = 0
 
     required init?(map: Map) {
     }
 
     func mapping(map: Map) {
-        id          <- map["id"]
-        description <- map["description"]
-        state       <- map["ticket_state"]
-        createdAt   <- (map["created_at"], DateTransform())
-        endedAt     <- (map["end_date"], DateTransform())
-        responsable <- map["responsable"]
-        user        <- map["user"]
+        id              <- map["id"]
+        description     <- map["description"]
+        state           <- map["ticket_state"]
+        createdAt       <- (map["created_at"], DateTransform())
+        endedAt         <- (map["end_date"], DateTransform())
+        responsable     <- map["responsable"]
+        user            <- map["user"]
+        userId          <- map["user_id"]
+        responsableId   <- map["responsable_id"]
     }
 
     static func getUrl() -> String {
