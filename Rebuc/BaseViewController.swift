@@ -46,6 +46,8 @@ class BaseViewController: UIViewController {
             let tapGestureForDismissKeyboard: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
             view.addGestureRecognizer(tapGestureForDismissKeyboard)
         }
+        let statusBarView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: UIApplication.shared.statusBarFrame.height))
+        view.addSubview(statusBarView)
         // Do any additional setup after loading the view.
     }
 
