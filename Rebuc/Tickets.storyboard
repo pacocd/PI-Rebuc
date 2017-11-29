@@ -278,7 +278,9 @@
                         <outlet property="assignResponsableButton" destination="S9x-qa-aoT" id="cKY-dp-w4N"/>
                         <outlet property="descriptionLabel" destination="avv-MW-dxG" id="tZZ-Bh-0No"/>
                         <outlet property="messageTextView" destination="hDW-MQ-IuP" id="HuS-iz-eBC"/>
+                        <outlet property="moreOptionsButton" destination="P6V-Ae-9Ns" id="Ujn-E8-zKn"/>
                         <outlet property="responsableTextView" destination="fR3-yn-7uf" id="08X-3X-ZpT"/>
+                        <outlet property="sendMessageButton" destination="UG7-0n-DR9" id="HMo-Nh-Uxv"/>
                         <outlet property="tableView" destination="gRr-8P-plq" id="Z7P-7c-ICT"/>
                         <outlet property="ticketNumberLabel" destination="qNM-K4-BDl" id="BXh-hc-WFd"/>
                         <outlet property="ticketStateImageView" destination="ZSR-U2-piL" id="KWt-6O-2Zf"/>

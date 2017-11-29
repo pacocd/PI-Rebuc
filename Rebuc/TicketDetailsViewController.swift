@@ -17,9 +17,28 @@ class TicketDetailsViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextView: UITextField!
     @IBOutlet weak var assignResponsableButton: UIButton!
+    @IBOutlet weak var moreOptionsButton: UIButton!
+    @IBOutlet weak var sendMessageButton: UIButton!
     var responsablePickerView: UIPickerView = UIPickerView()
-
     var ticket: Ticket?
+
+    lazy var moreOptionsActionSheet: UIAlertController = {
+        let alertController: UIAlertController = UIAlertController(title: "Opciones", message: "Ticket: \(ticket?.id ?? 0)", preferredStyle: .actionSheet)
+        let alertActionCloseTicket: UIAlertAction = UIAlertAction(title: "Cerrar Ticket", style: .destructive, handler: { (_) in
+            self.ticket?.state.id = 3
+            APIManager.shared.updateTicket(using: self.ticket!, success: { (newTicket) in
+                self.ticket = newTicket
+                self.dismissViewController()
+            }) { (error) in
+                self.showBasicAlert(with: error.localizedDescription)
+            }
+        })
+        let alertActionCancel: UIAlertAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        alertController.addAction(alertActionCloseTicket)
+        alertController.addAction(alertActionCancel)
+        return alertController
+    }()
+
     var responsable: Responsable?
     var responsables: [Responsable] = []
 
@@ -55,6 +74,18 @@ class TicketDetailsViewController: BaseViewController {
             })
         }
 
+        if ticket?.state.id == 3 {
+            messageTextView.isEnabled = false
+            messageTextView.backgroundColor = UIColor.grayTableViewSeparator
+            responsableTextView.isEnabled = false
+            responsableTextView.backgroundColor = UIColor.grayTableViewSeparator
+            assignResponsableButton.isEnabled = false
+            assignResponsableButton.setTitleColor(.grayTableViewSeparator, for: .normal)
+            sendMessageButton.isEnabled = false
+            sendMessageButton.setTitleColor(.grayTableViewSeparator, for: .normal)
+            moreOptionsButton.isEnabled = false
+            moreOptionsButton.setTitleColor(.grayTableViewSeparator, for: .normal)
+        }
         if let ticket = ticket {
             updateUI(using: ticket)
         }
@@ -76,6 +107,7 @@ class TicketDetailsViewController: BaseViewController {
             }
             self.ticketNumberLabel.text = "Ticket número \(ticket.id)"
             self.descriptionLabel.text = """
+            Estado: \(ticket.state.name)
             Descripción:
                 \(ticket.description ?? "")
             """
@@ -113,6 +145,7 @@ class TicketDetailsViewController: BaseViewController {
     }
 
     @IBAction func showOptionsMenu(_ sender: Any) {
+        present(moreOptionsActionSheet, animated: true, completion: nil)
     }
 
 }

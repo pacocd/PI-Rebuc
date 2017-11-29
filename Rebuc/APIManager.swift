@@ -131,7 +131,7 @@ extension APIManager {
     func updateTicket(using newValues: Ticket, success: @escaping(Ticket) -> Void, failure: @escaping(Error) -> Void) {
 
         let parameters: Parameters = [
-            "responsable_id": newValues.responsable?.id ?? 0,
+            "responsable_id": newValues.responsableId,
             "ticket_state_id": newValues.state.id
         ]
         patchObject(of: Ticket.self, using: parameters, and: newValues.id, success: { (ticket) in
