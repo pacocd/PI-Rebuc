@@ -48,6 +48,7 @@ class TicketDetailsViewController: BaseViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
         navigationItem.title = "Detalles de Ticket"
         if UserManager.shared.user?.userRole.id == 3 {
             responsableTextView.isUserInteractionEnabled = false
@@ -61,23 +62,34 @@ class TicketDetailsViewController: BaseViewController {
             responsablePickerView.dataSource = self
             assignResponsableButton.isEnabled = true
             assignResponsableButton.setTitleColor(UIColor.greenUcolTab, for: .normal)
-            APIManager.shared.getObjects(of: Responsable.self, success: { (responsables) in
-                let unorderedResponsables = responsables.flatMap({ (responsable) -> Responsable? in
-                    if responsable.dependenceId == self.ticket?.user.dependenceId {
-                        return responsable
-                    } else if responsable.userRole.id == 1 {
-                        return responsable
-                    } else {
-                        return nil
-                    }
+            APIManager.shared.getMovements(for: ticket?.id ?? 0, success: { (ticketMovementsRequest) in
+                self.ticketMovements = ticketMovementsRequest.sorted(by: { (t1, t2) -> Bool in
+                    return t1.id < t2.id
                 })
-                self.responsables = unorderedResponsables.sorted(by: { (r1, r2) -> Bool in
-                    return r1.userRole.id < r2.userRole.id
+                self.tableView.reloadData()
+                let scrollPoint = CGPoint(x: 0, y: self.tableView.contentSize.height - self.tableView.frame.size.height)
+                self.tableView.setContentOffset(scrollPoint, animated: true)
+                APIManager.shared.getObjects(of: Responsable.self, success: { (responsables) in
+                    let unorderedResponsables = responsables.flatMap({ (responsable) -> Responsable? in
+                        if responsable.dependenceId == self.ticket?.user.dependenceId {
+                            return responsable
+                        } else if responsable.userRole.id == 1 {
+                            return responsable
+                        } else {
+                            return nil
+                        }
+                    })
+                    self.responsables = unorderedResponsables.sorted(by: { (r1, r2) -> Bool in
+                        return r1.userRole.id < r2.userRole.id
+                    })
+                    self.responsablePickerView.reloadAllComponents()
+                }, failure: { (error) in
+                    self.showBasicAlert(with: error.localizedDescription)
                 })
-                self.responsablePickerView.reloadAllComponents()
-            }, failure: { (error) in
+            }) { (error) in
                 self.showBasicAlert(with: error.localizedDescription)
-            })
+            }
+
         }
 
         if ticket?.state.id == 3 {
@@ -96,14 +108,6 @@ class TicketDetailsViewController: BaseViewController {
             updateUI(using: ticket)
         }
 
-        APIManager.shared.getMovements(for: ticket?.id ?? 0, success: { (ticketMovementsRequest) in
-            self.ticketMovements = ticketMovementsRequest.sorted(by: { (t1, t2) -> Bool in
-                return t1.id < t2.id
-            })
-            self.tableView.reloadData()
-        }) { (error) in
-            self.showBasicAlert(with: error.localizedDescription)
-        }
         // Do any additional setup after loading the view.
     }
 

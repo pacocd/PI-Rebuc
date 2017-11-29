@@ -149,8 +149,10 @@ extension APIManager {
     func getMovements(for ticketId: Int, success: @escaping([TicketMovement]) -> Void, failure: @escaping(Error) -> Void) {
         let url: String = "\(TicketMovement.getUrl())?ticket_id=\(ticketId)"
 
-        getObjectsWithToken(of: TicketMovement.self, usingSpecific: url) { (ticketMovements) in
+        getObjectsWithToken(of: TicketMovement.self, usingSpecific: url, success: { (ticketMovements) in
             success(ticketMovements)
+        }) { (error) in
+            failure(error)
         }
     }
 
@@ -227,7 +229,7 @@ extension APIManager {
                 if let json = response.value as? [String: Any] {
                     if let objectsArray = json[T.pluralNodeName()] as? [[String: Any]] {
                         if let objects = Mapper<T>().mapArray(JSONObject: objectsArray) {
-                            UserManager.shared.saveOnDefaults(token: response.response?.allHeaderFields as! [String: Any])
+                            UserManager.shared.update(token: response.response?.allHeaderFields["Access-Token"] as? String)
                             success(objects)
                         }
                     }
@@ -238,22 +240,29 @@ extension APIManager {
         }
     }
 
-    func getObjectsWithToken<T>(of type: T.Type, usingSpecific url: String, success: @escaping([T]) -> Void) where T: Mappable, T: Model {
-        let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
+    func getObjectsWithToken<T>(of type: T.Type, usingSpecific url: String, success: @escaping([T]) -> Void, failure: @escaping (Error) -> Void) where T: Mappable, T: Model {
+        let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
 
-        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
-            switch response.result {
+        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseArray) in
+            switch responseArray.result {
             case .success:
-                if let json = response.value as? [String: Any] {
-                    if let objectsArray = json[T.pluralNodeName()] as? [[String: Any]] {
-                        if let objects = Mapper<T>().mapArray(JSONObject: objectsArray) {
-                            UserManager.shared.saveOnDefaults(token: response.response?.allHeaderFields as! [String: Any])
-                            success(objects)
+                if let json = responseArray.value as? [String: Any] {
+                    if let error = self.parseErrorFromResponse(findingIn: json) {
+                        failure(error)
+                    } else if let objectArrayData = json[T.pluralNodeName()] as? [[String: Any]] {
+                        if let objectArray = Mapper<T>().mapArray(JSONObject: objectArrayData) {
+                            success(objectArray)
+                        } else {
+                            failure(APIError())
                         }
+                    } else {
+                        failure(APIError())
                     }
+                } else {
+                    failure(APIError())
                 }
             case .failure(let error):
-                UIViewController().showBasicAlert(with: error.localizedDescription)
+                failure(error)
             }
         }
     }
@@ -270,7 +279,7 @@ extension APIManager {
                         failure(error)
                     } else if let objectJSON = json[T.singularNodeName()] as? [String: Any] {
                         if let object = Mapper<T>().map(JSON: objectJSON) {
-                            UserManager.shared.saveOnDefaults(token: response.response?.allHeaderFields as! [String: Any])
+                            UserManager.shared.update(token: response.response?.allHeaderFields["Access-Token"] as? String)
                             success(object)
                         } else {
                             failure(APIError())
@@ -301,7 +310,7 @@ extension APIManager {
                         failure(error)
                     } else if let objectJSON = json[T.singularNodeName()] as? [String: Any] {
                         if let object = Mapper<T>().map(JSON: objectJSON) {
-                            UserManager.shared.saveOnDefaults(token: response.response?.allHeaderFields as! [String: Any])
+                            UserManager.shared.update(token: response.response?.allHeaderFields["Access-Token"] as? String)
                             success(object)
                         } else {
                             failure(APIError())

@@ -58,7 +58,7 @@ extension AppDelegate {
 
             APIManager.shared.getUser(success: { (user, headers) in
                 UserManager.shared.user = user
-                UserManager.shared.saveOnDefaults(token: headers)
+                UserManager.shared.update(token: headers["Access-Token"] as? String)
                 NotificationCenter.default.post(name: .userDidSet, object: nil)
             })
         } else {

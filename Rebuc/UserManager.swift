@@ -25,8 +25,15 @@ struct UserManager {
                 }
             }
         }
+    }
 
-        defaults.synchronize()
+    func update(token value: String?) {
+        let defaults: UserDefaults = UserDefaults.standard
+        if let value = value {
+            defaults.synchronize()
+            defaults.set(value, forKey: "user-token-auth")
+            defaults.synchronize()
+        }
     }
 
     func removeSessionFromDefaults() {
@@ -34,7 +41,6 @@ struct UserManager {
         defaults.removeObject(forKey: "user-token-auth")
         defaults.removeObject(forKey: "user-client-auth")
         defaults.removeObject(forKey: "user-uid-auth")
-        defaults.synchronize()
     }
 
     func isUserLogged() -> Bool {
