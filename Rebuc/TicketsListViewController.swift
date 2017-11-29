@@ -130,6 +130,9 @@ extension TicketsListViewController: UITableViewDataSource {
             cell.imageView?.image = UIImage(named: "ticket-icon-active")
             break
         }
+        if tickets[indexPath.row].userId == UserManager.shared.user?.id || tickets[indexPath.row].responsableId == UserManager.shared.user?.id {
+            cell.accessoryType = .detailButton
+        }
         return cell
     }
 

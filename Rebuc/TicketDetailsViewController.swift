@@ -59,14 +59,17 @@ class TicketDetailsViewController: BaseViewController {
             assignResponsableButton.isEnabled = true
             assignResponsableButton.setTitleColor(UIColor.greenUcolTab, for: .normal)
             APIManager.shared.getObjects(of: Responsable.self, success: { (responsables) in
-                self.responsables = responsables.flatMap({ (responsable) -> Responsable? in
-                    if responsable.dependenceId == UserManager.shared.user?.dependenceId {
+                let unorderedResponsables = responsables.flatMap({ (responsable) -> Responsable? in
+                    if responsable.dependenceId == self.ticket?.user.dependenceId {
                         return responsable
                     } else if responsable.userRole.id == 1 {
                         return responsable
                     } else {
                         return nil
                     }
+                })
+                self.responsables = unorderedResponsables.sorted(by: { (r1, r2) -> Bool in
+                    return r1.userRole.id < r2.userRole.id
                 })
                 self.responsablePickerView.reloadAllComponents()
             }, failure: { (error) in
@@ -158,7 +161,7 @@ extension TicketDetailsViewController: UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(responsables[row].name) \(responsables[row].fatherLastName ?? "") \(responsables[row].motherLastName ?? "")"
+        return "\(responsables[row].name) \(responsables[row].fatherLastName ?? "") \(responsables[row].motherLastName ?? "") (\(responsables[row].userRole.name.first ?? "U"))"
     }
 
 }
