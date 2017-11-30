@@ -43,6 +43,9 @@ class SignUpViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    /// Request sign up to API
+    ///
+    /// - Parameter sender: Any
     @IBAction func signUp(_ sender: Any) {
         guard let names = namesTextField.text else { return }
         guard let fatherLastName = fatherLastNameTextField.text else { return }
@@ -68,6 +71,7 @@ class SignUpViewController: BaseViewController {
 
 }
 
+// MARK: - UIPickerViewDataSource
 extension SignUpViewController: UIPickerViewDataSource {
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -80,6 +84,7 @@ extension SignUpViewController: UIPickerViewDataSource {
 
 }
 
+// MARK: - UIPickerViewDelegate
 extension SignUpViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

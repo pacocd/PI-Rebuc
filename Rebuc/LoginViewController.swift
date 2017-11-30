@@ -28,6 +28,9 @@ class LoginViewController: BaseViewController {
     }
 
     
+    /// Requests user login
+    ///
+    /// - Parameter sender: Any
     @IBAction func login(_ sender: Any) {
         guard let email = emailTextField.text else { showBasicAlert(with: "El Email es requerido") ;return }
         guard let password = passwordTextField.text else { showBasicAlert(with: "El password es requerido") ;return }
@@ -46,6 +49,9 @@ class LoginViewController: BaseViewController {
         }
     }
 
+    /// Present Sign Up View Controller
+    ///
+    /// - Parameter sender: Any
     @IBAction func showSignUp(_ sender: Any) {
         let viewController = instantiate(viewController: "SignUpViewController", storyboard: "Authentication")
         let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)

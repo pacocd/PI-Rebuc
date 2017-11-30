@@ -23,6 +23,7 @@ class TicketDetailsViewController: BaseViewController {
     var ticket: Ticket?
     var ticketMovements: [TicketMovement] = []
 
+    /// Generate a menu with options like "Cerrar Ticket"
     lazy var moreOptionsActionSheet: UIAlertController = {
         let alertController: UIAlertController = UIAlertController(title: "Opciones", message: "Ticket: \(ticket?.id ?? 0)", preferredStyle: .actionSheet)
         let alertActionCloseTicket: UIAlertAction = UIAlertAction(title: "Cerrar Ticket", style: .destructive, handler: { (_) in
@@ -121,6 +122,9 @@ class TicketDetailsViewController: BaseViewController {
         // Do any additional setup after loading the view.
     }
 
+    /// Update View Controller UI when ticket is set / updated
+    ///
+    /// - Parameter ticket: Ticket used to Update UI
     func updateUI(using ticket: Ticket) {
         DispatchQueue.main.async {
             switch ticket.state.id {
@@ -156,6 +160,9 @@ class TicketDetailsViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /// Request to set a Ticket Responsable and Update UI
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func assignResponsable(_ sender: Any) {
         if let responsable = responsable {
             ticket?.responsableId = responsable.id
@@ -174,6 +181,9 @@ class TicketDetailsViewController: BaseViewController {
     }
 
     
+    /// Create a Ticket Movement with current user. If Admin / Librarian is response, If student is question. Also Update UITableView elements.
+    ///
+    /// - Parameter sender: Any
     @IBAction func sendMessage(_ sender: Any) {
         guard let message = messageTextView.text else { return }
         guard !message.isEmpty else { showBasicAlert(with: "El mensaje no puede ir vacío"); return }
@@ -199,12 +209,16 @@ class TicketDetailsViewController: BaseViewController {
         }
     }
 
+    /// Present Ticket's options menu
+    ///
+    /// - Parameter sender: Any
     @IBAction func showOptionsMenu(_ sender: Any) {
         present(moreOptionsActionSheet, animated: true, completion: nil)
     }
 
 }
 
+// MARK: - UIPickerViewDelegate
 extension TicketDetailsViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -218,6 +232,7 @@ extension TicketDetailsViewController: UIPickerViewDelegate {
 
 }
 
+// MARK: - UIPickerViewDataSource
 extension TicketDetailsViewController: UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -230,6 +245,7 @@ extension TicketDetailsViewController: UIPickerViewDataSource {
 
 }
 
+// MARK: - UITableViewDelegate
 extension TicketDetailsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -254,6 +270,7 @@ extension TicketDetailsViewController: UITableViewDelegate {
 
 }
 
+// MARK: - UITableViewDataSource
 extension TicketDetailsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

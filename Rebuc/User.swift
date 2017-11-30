@@ -34,14 +34,23 @@ class User: Mappable, Model {
         userRole            <- map["user_role"]
     }
 
+    /// Get user API base url
+    ///
+    /// - Returns: User API base url
     static func getUrl() -> String {
         return URLManager.shared.getURL(from: .userInfo)
     }
 
+    /// Get user singular node name
+    ///
+    /// - Returns: User singular node name
     static func singularNodeName() -> String {
         return "user"
     }
 
+    /// Get user plural node name
+    ///
+    /// - Returns: User plural node name
     static func pluralNodeName() -> String {
         return "users"
     }

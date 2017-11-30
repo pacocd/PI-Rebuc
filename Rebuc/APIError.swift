@@ -12,6 +12,11 @@ class APIError: NSError {
 
     var message: String = "Algo salió mal y no se pudo completar la operación"
 
+    /// Base init for APIError to generate an error with code and optional message
+    ///
+    /// - Parameters:
+    ///   - message: Message to display in Error (Optional)
+    ///   - code: Error number code
     init(message: String? = nil, code: Int = 0) {
         if let _message = message {
             self.message = _message

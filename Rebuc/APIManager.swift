@@ -10,10 +10,22 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
+/// APIManager do all API Requests and handle errors.
 struct APIManager {
 
     static let shared: APIManager = APIManager()
 
+}
+
+extension APIManager {
+
+    /// Request login to API
+    ///
+    /// - Parameters:
+    ///   - email: user's emal @ucol.mx
+    ///   - password: user's password
+    ///   - success: returns an User and response headers
+    ///   - failure: returns an Error
     func login(using email: String, and password: String, success: @escaping (User, [String: Any]) -> Void, failure: @escaping (Error) -> Void) {
 
         let url = URLManager.shared.getURL(from: .signIn)
@@ -49,6 +61,18 @@ struct APIManager {
         }
     }
 
+    /// Request sign up to API
+    ///
+    /// - Parameters:
+    ///   - email: User's email @ucol.mx
+    ///   - password: User's password
+    ///   - passwordConfirmation: Password confirmation
+    ///   - names: User name
+    ///   - fatherLastName: Rser father last name
+    ///   - motherLastName: Rser mother last name (Optional)
+    ///   - dependenceId: Rependence (Library) id
+    ///   - success: Returns an User and response headers
+    ///   - failure: Returns an Error
     func signUp(using email: String, _ password: String, _ passwordConfirmation: String, _ names: String, _ fatherLastName: String, _ motherLastName: String?, _ dependenceId: Int, success: @escaping (User, [String: Any]) -> Void, failure: @escaping (Error) -> Void) {
 
         let url: String = URLManager.shared.getURL(from: .signUp)
@@ -88,6 +112,9 @@ struct APIManager {
         }
     }
 
+    /// Get logged user data
+    ///
+    /// - Parameter success: Returns an user and response headers
     func getUser(success: @escaping(User, [String: Any]) -> Void) {
 
         let url: String = User.getUrl()
@@ -111,9 +138,15 @@ struct APIManager {
 
 }
 
-// Tickets
+// MARK: - Tickets
 extension APIManager {
 
+    /// Generate a new ticket from current User
+    ///
+    /// - Parameters:
+    ///   - description: Ticket's description message
+    ///   - success: Returns a Ticket everything is alright
+    ///   - failure: Returns an Error
     func generateTicket(sending description: String, success: @escaping(Ticket) -> Void, failure: @escaping(Error) -> Void) {
         let parameters: Parameters = [
             "user_id": UserManager.shared.user?.id ?? 0,
@@ -128,6 +161,12 @@ extension APIManager {
         }
     }
 
+    /// Update a Ticket by current User
+    ///
+    /// - Parameters:
+    ///   - newValues: New values to update Ticket
+    ///   - success: Returns a Ticket if everything is alright
+    ///   - failure: Returns an Error
     func updateTicket(using newValues: Ticket, success: @escaping(Ticket) -> Void, failure: @escaping(Error) -> Void) {
 
         let parameters: Parameters = [
@@ -143,9 +182,15 @@ extension APIManager {
 
 }
 
-// Ticket Movements
+// MARK: - Ticket Movements
 extension APIManager {
 
+    /// Get all movements for a specific Ticket
+    ///
+    /// - Parameters:
+    ///   - ticketId: Ticket id to find movements
+    ///   - success: Returns and Array of Movements from requested Ticket
+    ///   - failure: Returns an Error
     func getMovements(for ticketId: Int, success: @escaping([TicketMovement]) -> Void, failure: @escaping(Error) -> Void) {
         let url: String = "\(TicketMovement.getUrl())?ticket_id=\(ticketId)"
 
@@ -156,6 +201,14 @@ extension APIManager {
         }
     }
 
+    /// Create a movement for specific Ticket
+    ///
+    /// - Parameters:
+    ///   - ticketId: Ticket id to generate movement
+    ///   - tagId: Movement tag id
+    ///   - description: Movement's description message
+    ///   - success: Get an empty response closure block if everything is alright
+    ///   - failure: Returns an Error
     func createMovement(for ticketId: Int, type tagId: Int, with description: String, success: @escaping() -> Void, failure: @escaping(Error) -> Void) {
         let parameters: Parameters = [
             "ticket_id": ticketId,
@@ -172,9 +225,16 @@ extension APIManager {
 
 }
 
-// Generic functions
+// MARK: - Generic requests
 extension APIManager {
 
+    /// Get a Mappable and Model Object without user authentication required
+    ///
+    /// - Parameters:
+    ///   - type: Object type
+    ///   - id: Object id
+    ///   - success: Returns an Mappable and Model Object if everything is alright
+    ///   - failure: Returns an Error
     func getObject<T>(of type: T.Type, using id: Int, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Mappable, T: Model {
 
         let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
@@ -204,6 +264,12 @@ extension APIManager {
         }
     }
 
+    /// Get an array of Mappable and Model Objects without user authentication
+    ///
+    /// - Parameters:
+    ///   - type: Object type
+    ///   - success: Returns an array of Mappable and Model Objects if everything is alright
+    ///   - failure: Returns an Error
     func getObjects<T>(of type: T.Type, success: @escaping([T]) -> Void, failure: @escaping(Error) -> Void) where T: Mappable, T: Model {
 
         let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
@@ -233,6 +299,11 @@ extension APIManager {
         }
     }
 
+    /// Get an array of Mappable and Model Objects using authentication
+    ///
+    /// - Parameters:
+    ///   - type: Object type
+    ///   - success: Return an array of Mappable and Model Objects
     func getObjectsWithToken<T>(of type: T.Type, success: @escaping([T]) -> Void) where T: Mappable, T: Model {
         let url: String = T.getUrl()
         let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
@@ -254,6 +325,13 @@ extension APIManager {
         }
     }
 
+    /// Get array of Mappable and Model Objects using an specific URL
+    ///
+    /// - Parameters:
+    ///   - type: Object type
+    ///   - url: Specific URL to do request
+    ///   - success: Return an array of Mappable and Model Objects
+    ///   - failure: Returns an Error
     func getObjectsWithToken<T>(of type: T.Type, usingSpecific url: String, success: @escaping([T]) -> Void, failure: @escaping (Error) -> Void) where T: Mappable, T: Model {
         let headers: HTTPHeaders = URLManager.shared.getBaseRequestHeaders()
 
@@ -281,6 +359,13 @@ extension APIManager {
         }
     }
 
+    /// Post an Mappable and Model Object using authentication
+    ///
+    /// - Parameters:
+    ///   - type: Object type
+    ///   - parameters: Parameters to send in request
+    ///   - success: Return a Mappable and Model Object
+    ///   - failure: Returns an Error
     func postObject<T>(of type: T.Type, sending parameters: Parameters, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Model, T: Mappable {
         let headers: HTTPHeaders = UserManager.shared.getHeadersForAuthentication()
         let url: String = T.getUrl()
@@ -311,6 +396,14 @@ extension APIManager {
         }
     }
 
+    /// Patch (Update) a Mappable and Model Object using authentication
+    ///
+    /// - Parameters:
+    ///   - type: Object type
+    ///   - parameters: Parameters to send in request
+    ///   - id: Object to patch ID
+    ///   - success: Returns a Mappable and Model Object
+    ///   - failure: Returns an Error
     func patchObject<T>(of type: T.Type, using parameters: Parameters, and id: Int, success: @escaping(T) -> Void, failure: @escaping(Error) -> Void) where T: Model, T: Mappable {
 
         let url: String = "\(T.getUrl())/\(id)"
@@ -344,9 +437,13 @@ extension APIManager {
 
 }
 
-// Error parser
+// MARK: - Errors
 extension APIManager {
 
+    /// Find errors in response
+    ///
+    /// - Parameter json: JSON Response from API
+    /// - Returns: If an error is present, returns an APIError
     fileprivate func parseErrorFromResponse(findingIn json: [String: Any]) -> APIError? {
         var errorMessage: String?
         var errorMessages: [String]?

@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Only for Admins, show all registered users and their role.
 class UsersListViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -35,6 +36,7 @@ class UsersListViewController: BaseViewController {
 
 }
 
+// MARK: - UITableViewDelegate
 extension UsersListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -62,6 +64,7 @@ extension UsersListViewController: UITableViewDelegate {
 
 }
 
+// MARK: - UITableViewDataSource
 extension UsersListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

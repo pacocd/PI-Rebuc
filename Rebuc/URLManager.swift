@@ -11,8 +11,12 @@ import Alamofire
 
 struct URLManager {
 
+    /// URLManager singleton
     static let shared: URLManager = URLManager()
 
+    /// Private method to get base url of API
+    ///
+    /// - Returns: API's base url
     fileprivate func getBaseURL() -> String {
         let path: String? = Bundle.main.path(forResource: "Info", ofType: "plist")
         let dict: NSDictionary? = NSDictionary(contentsOfFile: path!)
@@ -20,6 +24,9 @@ struct URLManager {
         return urlServer
     }
 
+    /// Generate basic headers to request without authentication
+    ///
+    /// - Returns: HTTP Basic headers
     func getBaseRequestHeaders() -> HTTPHeaders {
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
@@ -27,6 +34,10 @@ struct URLManager {
         return headers
     }
 
+    /// URL for specific endpoint using Endpoint enum
+    ///
+    /// - Parameter endpoint: Endpoint to get URL
+    /// - Returns: API's URL to specific endpoint
     func getURL(from endpoint: Endpoint) -> String {
         let url = getBaseURL() + endpoint.getURL()
         return url
@@ -34,12 +45,30 @@ struct URLManager {
 
 }
 
+/// Protocol to define getURL as required method
 protocol EndpointProtocol {
     func getURL() -> String
 }
 
+/// Endpoint enum for every API endpoint
+///
+/// - signUp: Sign UP
+/// - signIn: Sign In / Log In
+/// - campusLocation: Campus Location
+/// - dependence: Dependence
+/// - movementTag: Movement Tag
+/// - ticketMovement: Ticket Movement
+/// - ticket: Ticket
+/// - ticketState: Ticket State
+/// - userRole: User Role
+/// - admin: Admin
+/// - userInfo: User Information
+/// - responsable: Responsable
 enum Endpoint: EndpointProtocol {
     case signUp, signIn, campusLocation, dependence, movementTag, ticketMovement, ticket, ticketState, userRole, admin, userInfo, responsable
+    /// Get specific path for base URL
+    ///
+    /// - Returns: Specific path
     func getURL() -> String {
         let basePath: String = "/api/v1/"
         switch self {

@@ -53,6 +53,9 @@ class TicketsListViewController: BaseViewController {
         }
     }
 
+    /// Present New Ticket View Controller
+    ///
+    /// - Parameter sender: Any
     @IBAction func createTicket(_ sender: Any) {
         let viewController: UIViewController = instantiate(viewController: "NewTicketViewController", storyboard: "Tickets")
         let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
@@ -64,6 +67,7 @@ class TicketsListViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    /// Update Super View Controller and Current View Controller UI
     override func updateUI() {
         super.updateUI()
         DispatchQueue.main.async {
@@ -78,6 +82,7 @@ class TicketsListViewController: BaseViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension TicketsListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -109,6 +114,7 @@ extension TicketsListViewController: UITableViewDelegate {
 
 }
 
+// MARK: - UITableViewDataSource
 extension TicketsListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

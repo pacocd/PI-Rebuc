@@ -9,11 +9,20 @@
 import Foundation
 import Alamofire
 
+/// UserManager do all interactions with UserDefults to store and manage local Data
 struct UserManager {
 
     static var shared: UserManager = UserManager()
     var user: User?
 
+}
+
+// MARK: - Defaults data modifications
+extension UserManager {
+
+    /// Save all user's session data in UserDefaults
+    ///
+    /// - Parameter value: Dictionary with user credentials
     func saveOnDefaults(token value: [String: Any]) {
         let defaults: UserDefaults = UserDefaults.standard
         if let accessToken = value["Access-Token"] as? String{
@@ -27,6 +36,9 @@ struct UserManager {
         }
     }
 
+    /// Update User's acces token in UserDefaults after a request
+    ///
+    /// - Parameter value: User's access token
     func update(token value: String?) {
         let defaults: UserDefaults = UserDefaults.standard
         if let value = value {
@@ -35,6 +47,7 @@ struct UserManager {
         }
     }
 
+    /// Remove user's session data from UserDefaults
     func removeSessionFromDefaults() {
         let defaults: UserDefaults = UserDefaults.standard
         defaults.removeObject(forKey: "user-token-auth")
@@ -42,6 +55,14 @@ struct UserManager {
         defaults.removeObject(forKey: "user-uid-auth")
     }
 
+}
+
+// MARK: - Check for stored data in Defaults
+extension UserManager {
+
+    /// Check in defaults is there is any User's Data
+    ///
+    /// - Returns: Boolean flag is User is logged or not
     func isUserLogged() -> Bool {
         if let _ = UserDefaults.standard.object(forKey: "user-token-auth") {
             return true
@@ -50,6 +71,14 @@ struct UserManager {
         }
     }
 
+}
+
+// MARK: - Get stored data from Defaults
+extension UserManager {
+
+    /// Generate headers for requests using User's session data stored in UserDefaults
+    ///
+    /// - Returns: HTTPHeaders for requests
     func getHeadersForAuthentication() -> HTTPHeaders {
         let defaults: UserDefaults = UserDefaults.standard
 

@@ -8,14 +8,24 @@
 
 import UIKit
 
+// MARK: - Added new functions to UIViewController
 extension UIViewController {
 
+    /// Get a UIViewController instantiated from storyboard
+    ///
+    /// - Parameters:
+    ///   - identifier: ViewController's Storyboard ID
+    ///   - name: Storyboard Name
+    /// - Returns: UIViewController instantiated by given data
     func instantiate(viewController identifier: String, storyboard name: String) -> UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: name, bundle: nil)
         let viewController: UIViewController = storyboard.instantiateViewController(withIdentifier: identifier)
         return viewController
     }
 
+    /// Present modally an alert with a message and OK button
+    ///
+    /// - Parameter message: Message to display in alert
     func showBasicAlert(with message: String) {
         let alertController: UIAlertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let alertAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -27,6 +37,7 @@ extension UIViewController {
 
 }
 
+// MARK: - Added new colors
 extension UIColor {
 
     class var greenUcolTab: UIColor {
@@ -51,6 +62,7 @@ extension UIColor {
 
 }
 
+// MARK: - Added new notifications for Users actions
 extension Notification.Name {
 
     static var userDidSet: Notification.Name {

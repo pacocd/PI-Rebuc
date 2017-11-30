@@ -24,6 +24,9 @@ class NewTicketViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    /// Request to create a new Ticket
+    ///
+    /// - Parameter sender: Any
     @IBAction func createTicket(_ sender: Any) {
         guard let description = descriptionTextView.text else { return }
         guard !description.isEmpty else { showBasicAlert(with: "La descripción es obligatoria"); return }

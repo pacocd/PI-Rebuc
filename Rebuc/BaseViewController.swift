@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// BaseViewController do navigation and menu's options management for all view controllers
 class BaseViewController: UIViewController {
 
     lazy var dismissButton: UIBarButtonItem = {
@@ -60,6 +61,7 @@ class BaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    /// Update controller UI
     @objc func updateUI() {
         if let user = UserManager.shared.user {
             DispatchQueue.main.async {
@@ -88,6 +90,7 @@ class BaseViewController: UIViewController {
         }
     }
 
+    /// Destroy User's session and present Login
     @objc func logout() {
         UserManager.shared.user = nil
         UserManager.shared.removeSessionFromDefaults()
@@ -96,10 +99,14 @@ class BaseViewController: UIViewController {
         present(navigationController, animated: true, completion: nil)
     }
 
+    /// Show User's menu in Navigation Bar
     @objc func presentUserProfileOptions() {
         present(userActionSheet, animated: true, completion: nil)
     }
 
+    /// Check if current controller is modal
+    ///
+    /// - Returns: True if is modal, False if is not
     func isModal() -> Bool {
         if let index = navigationController?.viewControllers.index(of: self), index > 0 {
             return false
@@ -119,10 +126,12 @@ class BaseViewController: UIViewController {
         return false
     }
 
+    /// Dismiss Modal View Controller
     @objc func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
 
+    /// Dismiss Keyboard if touch out of UITextField / UITextView
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

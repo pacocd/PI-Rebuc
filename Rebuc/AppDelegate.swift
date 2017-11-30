@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setInitialFlow()
@@ -50,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
 
+    /// Determine App initial View Controller if there is an user logged or not
     func setInitialFlow() {
         var navigationController: UINavigationController?
         if UserManager.shared.isUserLogged() {
@@ -70,6 +70,7 @@ extension AppDelegate {
 
     }
 
+    /// Configure App Color set
     func setAppColors() {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().backgroundColor = UIColor.greenUcolTab
